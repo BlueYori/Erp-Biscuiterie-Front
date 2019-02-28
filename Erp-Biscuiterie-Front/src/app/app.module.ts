@@ -7,6 +7,7 @@ import { TataComponent } from './tata/tata.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { ConnexionComponent } from './connexion/connexion.component';
 
 
 
@@ -15,6 +16,7 @@ import { MatButtonModule, MatCheckboxModule } from '@angular/material';
   declarations: [
     AppComponent,
     TataComponent,
+    ConnexionComponent,
    
   ],
   imports: [
