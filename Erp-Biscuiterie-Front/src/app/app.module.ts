@@ -3,11 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TataComponent } from './tata/tata.component';
+
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { ConnexionComponent } from './connexion/connexion.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -15,8 +16,8 @@ import { ConnexionComponent } from './connexion/connexion.component';
 @NgModule({
   declarations: [
     AppComponent,
-    TataComponent,
     ConnexionComponent,
+    HomeComponent,
    
   ],
   imports: [
