@@ -1,2 +1,6 @@
-@import  '~@angular/material/prebuilt-themes/indigo-pink.css'
 
+/*pour que sidebar prenne toute la page*/
+html,body {
+  margin: 0;
+  height: 100%;
+}
