@@ -18,6 +18,19 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CustomerComponent } from './model/customer/customer.component';
+import { IngredientComponent } from './model/ingredient/ingredient.component';
+import { IngredientDisponibilityComponent } from './model/ingredient-disponibility/ingredient-disponibility.component';
+import { OrderComponent } from './model/order/order.component';
+import { OrderDetailsComponent } from './model/order-details/order-details.component';
+import { ProductComponent } from './model/product/product.component';
+import { RecipeComponent } from './model/recipe/recipe.component';
+import { ReductionComponent } from './model/reduction/reduction.component';
+import { RoleComponent } from './model/role/role.component';
+import { StateComponent } from './model/state/state.component';
+import { TypeIngredientComponent } from './model/type-ingredient/type-ingredient.component';
+import { UserComponent } from './model/user/user.component';
 
 
 
@@ -29,7 +42,19 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
     HomeComponent,
     LayoutComponent,
     HeaderComponent,
-    SidenavListComponent
+    SidenavListComponent,
+    CustomerComponent,
+    IngredientComponent,
+    IngredientDisponibilityComponent,
+    OrderComponent,
+    OrderDetailsComponent,
+    ProductComponent,
+    RecipeComponent,
+    ReductionComponent,
+    RoleComponent,
+    StateComponent,
+    TypeIngredientComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +83,8 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
     MatListModule,
     FlexLayoutModule,
     MatTabsModule,
-    MatSidenavModule
+    MatSidenavModule,
+    HttpClientModule
   ],
   exports: [
     CommonModule,
