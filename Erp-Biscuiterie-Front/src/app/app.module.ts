@@ -31,6 +31,7 @@ import { RoleComponent } from './model/role/role.component';
 import { StateComponent } from './model/state/state.component';
 import { TypeIngredientComponent } from './model/type-ingredient/type-ingredient.component';
 import { UserComponent } from './model/user/user.component';
+import { ClientsViewComponent } from './clients-view/clients-view.component';
 
 
 
@@ -55,6 +56,7 @@ import { UserComponent } from './model/user/user.component';
     StateComponent,
     TypeIngredientComponent,
     UserComponent
+    ClientsViewComponent
   ],
   imports: [
     BrowserModule,
