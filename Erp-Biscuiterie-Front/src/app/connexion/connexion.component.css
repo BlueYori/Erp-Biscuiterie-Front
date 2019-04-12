@@ -27,4 +27,10 @@ mat-card-content {
   display: flex;
   justify-content: flex-end;
 }
+ 
+.background {
+  background-image:url("../../biscuit_erp.jpg");
+  background-size: cover;
+}
+
 
