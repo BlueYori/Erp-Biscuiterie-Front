@@ -1,19 +1,30 @@
 
-.example-card{
-  margin: 0 auto; 
+:host {
+  display: flex;
   justify-content: center;
-  background-color: #bdbcfc;
-  width: 400px;
+  margin: 300px 0px;
 }
-.logo-picture{
-    
-    text-align: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    float: none;
-	  width: 100%;
+
+.mat-form-field {
+  width: 100%;
+  min-width: 300px;
 }
-.img-circle {
-    border-radius: 50%;
-    width: 200px;
+
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
 }
+
+.error {
+  padding: 16px;
+  width: 300px;
+  color: white;
+  background-color: red;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+}
+
