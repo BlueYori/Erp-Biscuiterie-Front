@@ -1,20 +1,34 @@
+import { CommonModule } from '@angular/common';
+import { AppComponent } from './app.component';
+import { CustomMaterialModule } from './core/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { CommonModule } from "@angular/common";
-
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatInputModule, MatFormFieldModule, MatSelectModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatIconModule, MatToolbarModule, MatCardModule, MatDialogModule, MatTableModule, MatProgressSpinnerModule, MatMenuModule, MatSidenavModule, MatListModule, MatTabsModule,} from '@angular/material';
-import { ConnexionComponent } from './connexion/connexion.component';
-import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
 import { LayoutModule } from '@angular/cdk/layout';
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  ErrorStateMatcher,
+  ShowOnDirtyErrorStateMatcher,
+  MatIconModule,
+  MatToolbarModule,
+  MatCardModule,
+  MatDialogModule,
+  MatTableModule,
+  MatProgressSpinnerModule,
+  MatMenuModule,
+  MatSidenavModule,
+  MatListModule,
+  MatTabsModule,
+} from '@angular/material';
+
+import { HomeComponent } from './home/home.component';
 import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
@@ -31,14 +45,11 @@ import { RoleComponent } from './model/role/role.component';
 import { StateComponent } from './model/state/state.component';
 import { TypeIngredientComponent } from './model/type-ingredient/type-ingredient.component';
 import { UserComponent } from './model/user/user.component';
-
-
-
+import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ConnexionComponent,
     HomeComponent,
     LayoutComponent,
     HeaderComponent,
@@ -55,11 +66,12 @@ import { UserComponent } from './model/user/user.component';
     StateComponent,
     TypeIngredientComponent,
     UserComponent
+    LoginFormComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
+    CustomMaterialModule,
     FormsModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -68,7 +80,6 @@ import { UserComponent } from './model/user/user.component';
     MatFormFieldModule,
     MatSelectModule,
     MatIconModule,
-    CommonModule,
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,
@@ -105,7 +116,7 @@ import { UserComponent } from './model/user/user.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
 
 
 

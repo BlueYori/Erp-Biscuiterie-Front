@@ -15,7 +15,7 @@ import { RecipeComponent } from './model/recipe/recipe.component';
 import { ReductionComponent } from './model/reduction/reduction.component';
 import { StateComponent } from './model/state/state.component';
 import { TypeIngredientComponent } from './model/type-ingredient/type-ingredient.component';
-
+import { LoginFormComponent } from './login-form/login-form.component';
 
 const routes: Routes = [
   { path: '',
@@ -45,7 +45,11 @@ const routes: Routes = [
    { path: 'typeIngredient',
    component: TypeIngredientComponent },
    { path: 'user',
-   component: UserComponent }
+   component: UserComponent },
+  {
+    path: 'login',
+    component: LoginFormComponent
+  }
 ];
 
 @NgModule({
@@ -53,15 +57,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
-
-
-
-/*
-pour rappel :
-
-userComponent  = homeComponent
-LoginComponent = ConnexionComponent
-
-*/
-
