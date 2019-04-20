@@ -1,6 +1,17 @@
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+* {
+  box-sizing: border-box;
+}
 
 /*pour que sidebar prenne toute la page*/
 html,body {
   margin: 0;
   height: 100%;
+}
+
+/* Login-form container */
+.login-container {
+  background : url("biscuit_erp.jpg") no-repeat center / cover;
 }
