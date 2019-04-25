@@ -18,7 +18,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: HomeComponent
   },
   {
