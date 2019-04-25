@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { CustomMaterialModule } from './core/material.module';
@@ -69,6 +70,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
     LoginFormComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     CustomMaterialModule,

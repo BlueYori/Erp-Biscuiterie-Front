@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-sidenav-list',
@@ -9,7 +10,6 @@ import { HttpClient } from '@angular/common/http';
 export class SidenavListComponent implements OnInit {
   @Output() sidenavClose = new EventEmitter();
 
-  // private baseUrl = 'https://localhost:5001/api/';
   public entitiesLink: any[] = [
     { entity: 'Customer', link: 'customer' },
     { entity: 'Ingredient', link : 'ingredient' },
@@ -28,19 +28,9 @@ export class SidenavListComponent implements OnInit {
   constructor(private httpClient: HttpClient) {}
 
   ngOnInit() {
-    // this.getAllEntities();
   }
 
   public onSidenavClose = () => {
     this.sidenavClose.emit();
   }
-
-  // getAllEntities() {
-  //   this.entitiesName.forEach(e => {
-  //     this.httpClient.get(this.baseUrl + e).subscribe((res: any[]) => {
-  //       console.log(res);
-  //       this.entities = res;
-  //     });
-  //   });
-  // }
 }
