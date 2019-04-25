@@ -65,8 +65,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
     RoleComponent,
     StateComponent,
     TypeIngredientComponent,
-    UserComponent
-    LoginFormComponent,
+    UserComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,

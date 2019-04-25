@@ -7,7 +7,6 @@ import { NgModule } from '@angular/core';
 
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { ConnexionComponent } from './connexion/connexion.component';
 import { OrderComponent } from './model/order/order.component';
 import { OrderDetailsComponent } from './model/order-details/order-details.component';
 import { ProductComponent } from './model/product/product.component';
@@ -18,34 +17,58 @@ import { TypeIngredientComponent } from './model/type-ingredient/type-ingredient
 import { LoginFormComponent } from './login-form/login-form.component';
 
 const routes: Routes = [
-  { path: '',
-   component: HomeComponent },
-  { path: 'connexion',
-   component: ConnexionComponent },
-   { path: 'customer',
-   component:  CustomerComponent },
-   { path: 'ingredient',
-   component: IngredientComponent },
-   { path: 'ingredientDisponibility',
-   component: IngredientDisponibilityComponent },
-   { path: 'order',
-   component: OrderComponent },
-   { path: 'orderDetails',
-   component: OrderDetailsComponent },
-   { path: 'product',
-   component: ProductComponent },
-   { path: 'recipe',
-   component: RecipeComponent },
-   { path: 'reduction',
-   component: ReductionComponent },
-   { path: 'role',
-   component: RoleComponent },
-   { path: 'state',
-   component: StateComponent },
-   { path: 'typeIngredient',
-   component: TypeIngredientComponent },
-   { path: 'user',
-   component: UserComponent },
+  {
+    path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'customer',
+    component: CustomerComponent
+  },
+  {
+    path: 'ingredient',
+    component: IngredientComponent
+  },
+  {
+    path: 'ingredientDisponibility',
+    component: IngredientDisponibilityComponent
+  },
+  {
+    path: 'order',
+    component: OrderComponent
+  },
+  {
+    path: 'orderDetails',
+    component: OrderDetailsComponent
+  },
+  {
+    path: 'product',
+    component: ProductComponent
+  },
+  {
+    path: 'recipe',
+    component: RecipeComponent
+  },
+  {
+    path: 'reduction',
+    component: ReductionComponent
+  },
+  {
+    path: 'role',
+    component: RoleComponent
+  },
+  {
+    path: 'state',
+    component: StateComponent
+  },
+  {
+    path: 'typeIngredient',
+    component: TypeIngredientComponent
+  },
+  {
+    path: 'user',
+    component: UserComponent
+  },
   {
     path: 'login',
     component: LoginFormComponent
