@@ -1,17 +1,17 @@
-
-<!--The content below is only a placeholder and can be replaced.-->
-
-<!-- <app-login-form></app-login-form> -->
-
-<!-- <mat-sidenav-container>
-  <mat-sidenav #sidenav role="navigation">
-    <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
-    <main>
-    </main>
-  </mat-sidenav-content>
-</mat-sidenav-container> -->
-
-<router-outlet></router-outlet>
+<div style="height:100%;" *ngIf="isLoggedIn; else loggedOut">
+        <mat-sidenav-container>
+            <mat-sidenav #sidenav role="navigation">
+              <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>
+            </mat-sidenav>
+            <mat-sidenav-content>
+              <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+              <main>
+                  <router-outlet></router-outlet>
+              </main>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+      </div>
+      
+      <ng-template #loggedOut>
+          <app-login-form (eventClick)="receiveEvent($event)"></app-login-form>
+      </ng-template>

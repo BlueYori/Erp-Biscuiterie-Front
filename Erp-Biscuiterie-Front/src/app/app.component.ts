@@ -8,4 +8,11 @@ import { Compiler } from '@angular/core';
 })
 export class AppComponent {
   title = 'Erp-Biscuiterie-Front';
+
+  isLoggedIn = false;
+
+  receiveEvent($event) {
+    this.isLoggedIn = $event;
+    console.log(this.isLoggedIn);
+  }
 }
