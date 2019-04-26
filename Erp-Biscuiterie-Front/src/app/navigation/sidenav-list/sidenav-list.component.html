@@ -1,10 +1,13 @@
 <div class="div-side-entiere">
-  <mat-nav-list *ngFor="let e of entitiesLink">
-    <!-- <a mat-list-item routerLink="/home" (click)="onSidenavClose()">
+  <mat-nav-list>
+    <a mat-list-item routerLink="/home" (click)="onSidenavClose()">
       <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
-    </a> -->
+    </a>
+  </mat-nav-list>
+  <hr>
+  <mat-nav-list *ngFor="let e of entitiesLink">
     <a mat-list-item routerLink='/{{e.link}}' (click)="onSidenavClose()">
-      <mat-icon>class</mat-icon><span class="nav-caption">{{e.entity}}</span>
+      <mat-icon>fiber_manual_record</mat-icon><span class="nav-caption">{{e.entity}}</span>
     </a>
   </mat-nav-list>
 </div>
