@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from '../user';
+import { FormBuilder, Validators } from '@angular/forms';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user',
@@ -7,9 +11,92 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  dataSaved = false;
+  userForm: any;
+  allUsers: Observable<User[]>;
+  userIdUpdate;
+  message = null;
+
+  constructor(private formbuilder: FormBuilder, private userService: UserService) { }
 
   ngOnInit() {
+    this.userForm = this.formbuilder.group({
+      UserFirstname: ['', [Validators.required]],
+      UserLastname: ['', [Validators.required]],
+      Email: ['', [Validators.required]],
+      Role: ['', [Validators.required]],
+      Password: ['', [Validators.required]]
+    });
+    this.loadAllUsers();
+  }
+
+  loadAllUsers() {
+    this.allUsers = this.userService.getAllUser();
+  }
+
+  onFormSubmit() {
+    this.dataSaved = false;
+    const user = this.userForm.value;
+    this.createUser(user);
+    this.userForm.reset();
+  }
+
+  loadUserToEdit(userId: number) {
+    this.userService.getUserById(userId).subscribe(user => {
+      this.message = null;
+      this.dataSaved = null;
+      this.userIdUpdate = user.Id;
+      this.userForm.controls['UserFirstname'].setValue(user.Firstname);
+      this.userForm.controls['UserLastname'].setValue(user.Lastname);
+      this.userForm.controls['Email'].setValue(user.Email);
+      this.userForm.controls['Password'].setValue(user.Password);
+      this.userForm.controls['Role'].setValue(user.RoleId);
+    });
+  }
+
+  createUser(user: User) {
+    if (this.userIdUpdate == null) {
+      this.userService.createUser(user).subscribe(
+        () => {
+          this.dataSaved = true;
+          this.message = 'Record saved Succesfully';
+          this.loadAllUsers();
+          this.userIdUpdate = null;
+          this.userForm.reset();
+        }
+      );
+    } else {
+      user.Id = this.userIdUpdate;
+      this.userService.updateUser(user).subscribe(
+        () => {
+          this.dataSaved = true;
+          this.message = 'Record updated succesfully';
+          this.loadAllUsers();
+          this.userIdUpdate = null;
+          this.userForm.reset();
+        }
+      );
+    }
+  }
+
+  deleteUser(userId: number) {
+    if (confirm('Voulez-vous vraiment supprimer cette utilisateur ?')) {
+      this.userService.deleteUser(userId).subscribe(
+        () => {
+          this.dataSaved = true;
+          this.message = 'Record deleted successfully';
+          this.loadAllUsers();
+          this.userIdUpdate = null;
+          this.userForm.reset();
+        }
+      );
+    }
+  }
+
+  resetForm() {
+    this.userForm.reset();
+    this.message = null;
+    this.dataSaved = false;
   }
 
 }
