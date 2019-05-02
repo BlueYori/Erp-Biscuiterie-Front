@@ -45,12 +45,12 @@ export class UserComponent implements OnInit {
     this.userService.getUserById(userId).subscribe(user => {
       this.message = null;
       this.dataSaved = null;
-      this.userIdUpdate = user.Id;
-      this.userForm.controls['UserFirstname'].setValue(user.Firstname);
-      this.userForm.controls['UserLastname'].setValue(user.Lastname);
-      this.userForm.controls['Email'].setValue(user.Email);
-      this.userForm.controls['Password'].setValue(user.Password);
-      this.userForm.controls['Role'].setValue(user.RoleId);
+      this.userIdUpdate = user.id;
+      this.userForm.controls['UserFirstname'].setValue(user.firstname);
+      this.userForm.controls['UserLastname'].setValue(user.lastname);
+      this.userForm.controls['Email'].setValue(user.email);
+      this.userForm.controls['Password'].setValue(user.password);
+      this.userForm.controls['Role'].setValue(user.roleId);
     });
   }
 
@@ -66,7 +66,7 @@ export class UserComponent implements OnInit {
         }
       );
     } else {
-      user.Id = this.userIdUpdate;
+      user.id = this.userIdUpdate;
       this.userService.updateUser(user).subscribe(
         () => {
           this.dataSaved = true;

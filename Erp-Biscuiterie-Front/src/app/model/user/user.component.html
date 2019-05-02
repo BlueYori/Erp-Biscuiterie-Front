@@ -82,11 +82,11 @@
                 <th class="tbl2">Delete</th>  
               </tr>  
               <tr *ngFor="let user of allUsers | async">  
-                <td class="tbl2">{{user.Id}}</td>  
-                <td class="tbl2">{{user.Firstname}}</td>  
-                <td class="tbl2">{{user.Lastname}}</td>
-                <td class="tbl2">{{user.Email}}</td>
-                <td class="tbl2">{{user.RoleId == 1 ? 'Administrateur' : 'Comptable'}}</td>  
+                <td class="tbl2">{{user.id}}</td>  
+                <td class="tbl2">{{user.firstname}}</td>  
+                <td class="tbl2">{{user.lastname}}</td>
+                <td class="tbl2">{{user.email}}</td>
+                <td class="tbl2">{{user.roleId == 1 ? 'Administrateur' : 'Comptable'}}</td>  
                 <td class="tbl2">  
                   <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadUserToEdit(user.Id)">Edit</button>  
                 </td>  
