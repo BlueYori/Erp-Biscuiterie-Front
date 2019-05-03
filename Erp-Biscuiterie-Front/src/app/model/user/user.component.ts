@@ -21,14 +21,22 @@ export class UserComponent implements OnInit {
   constructor(private formbuilder: FormBuilder, private userService: UserService) { }
 
   ngOnInit() {
+    // tslint:disable-next-line:max-line-length
+    const emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.userForm = this.formbuilder.group({
-      UserFirstname: ['', [Validators.required]],
-      UserLastname: ['', [Validators.required]],
-      Email: ['', [Validators.required]],
-      Role: ['', [Validators.required]],
-      Password: ['', [Validators.required]]
+      firstname: ['', [Validators.required]],
+      lastname: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.pattern(emailregex)]],
+      roleId: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
     this.loadAllUsers();
+  }
+
+  getErrorEmail() {
+    return this.userForm.get('email').hasError('required') ? 'Ce champ est requis' :
+      this.userForm.get('email').hasError('pattern') ? 'Adresse email non valide' :
+        this.userForm.get('email').hasError('alreadyInUse') ? 'This emailaddress is already in use' : '';
   }
 
   loadAllUsers() {
@@ -39,6 +47,14 @@ export class UserComponent implements OnInit {
   onFormSubmit() {
     this.dataSaved = false;
     const user = this.userForm.value;
+    // const user2: User = {
+    //   firstname: this.userForm.get('firstname').value,
+    //   lastname: this.userForm.get('lastname').value,
+    //   email: this.userForm.get('email').value,
+    //   roleId: Number(this.userForm.get('roleId').value),
+    //   password: this.userForm.get('password').value,
+    // };
+    console.log(user);
     this.createUser(user);
     this.userForm.reset();
   }
@@ -48,18 +64,20 @@ export class UserComponent implements OnInit {
       this.message = null;
       this.dataSaved = null;
       this.userIdUpdate = user.id;
-      this.userForm.controls['UserFirstname'].setValue(user.firstname);
-      this.userForm.controls['UserLastname'].setValue(user.lastname);
-      this.userForm.controls['Email'].setValue(user.email);
-      this.userForm.controls['Password'].setValue(user.password);
-      this.userForm.controls['Role'].setValue(user.roleId);
+      this.userForm.controls['firstname'].setValue(user.firstname);
+      this.userForm.controls['lastname'].setValue(user.lastname);
+      this.userForm.controls['email'].setValue(user.email);
+      this.userForm.controls['password'].setValue(user.password);
+      this.userForm.controls['roleId'].setValue(user.roleId);
     });
   }
 
   createUser(user: User) {
     if (this.userIdUpdate == null) {
+      console.log('on est dans create user id null => ');
       this.userService.createUser(user).subscribe(
-        () => {
+        data => {
+          console.log(data);
           this.dataSaved = true;
           this.message = 'Record saved Succesfully';
           this.loadAllUsers();
