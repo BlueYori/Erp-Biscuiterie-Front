@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormGroupDirective } from '@angular/forms';
 import { User } from 'src/app/user';
 import { UserService } from 'src/app/user.service';
 
@@ -41,26 +41,18 @@ export class UserComponent implements OnInit {
 
   loadAllUsers() {
     this.allUsers = this.userService.getAllUser();
-    console.log(this.allUsers);
   }
 
   onFormSubmit() {
     this.dataSaved = false;
     const user = this.userForm.value;
-    // const user2: User = {
-    //   firstname: this.userForm.get('firstname').value,
-    //   lastname: this.userForm.get('lastname').value,
-    //   email: this.userForm.get('email').value,
-    //   roleId: Number(this.userForm.get('roleId').value),
-    //   password: this.userForm.get('password').value,
-    // };
-    console.log(user);
     this.createUser(user);
     this.userForm.reset();
   }
 
   loadUserToEdit(userId: number) {
-    this.userService.getUserById(userId).subscribe(user => {
+    this.userService.getUserById(userId).subscribe((user) => {
+      console.log(user);
       this.message = null;
       this.dataSaved = null;
       this.userIdUpdate = user.id;
@@ -69,17 +61,20 @@ export class UserComponent implements OnInit {
       this.userForm.controls['email'].setValue(user.email);
       this.userForm.controls['password'].setValue(user.password);
       this.userForm.controls['roleId'].setValue(user.roleId);
+
+      console.log(this.userIdUpdate);
+    },
+    error  => {
+    console.log('Error', error);
     });
   }
 
   createUser(user: User) {
     if (this.userIdUpdate == null) {
-      console.log('on est dans create user id null => ');
       this.userService.createUser(user).subscribe(
         data => {
-          console.log(data);
           this.dataSaved = true;
-          this.message = 'Record saved Succesfully';
+          this.message = 'L\'utilisateur à bien été ajouté';
           this.loadAllUsers();
           this.userIdUpdate = null;
           this.userForm.reset();
@@ -90,7 +85,7 @@ export class UserComponent implements OnInit {
       this.userService.updateUser(user).subscribe(
         () => {
           this.dataSaved = true;
-          this.message = 'Record updated succesfully';
+          this.message = 'L\'utilisateur à bien été modifié';
           this.loadAllUsers();
           this.userIdUpdate = null;
           this.userForm.reset();
@@ -104,7 +99,7 @@ export class UserComponent implements OnInit {
       this.userService.deleteUser(userId).subscribe(
         () => {
           this.dataSaved = true;
-          this.message = 'Record deleted successfully';
+          this.message = 'L\'utilisateur à bien été supprimé';
           this.loadAllUsers();
           this.userIdUpdate = null;
           this.userForm.reset();
@@ -115,6 +110,7 @@ export class UserComponent implements OnInit {
 
   resetForm() {
     this.userForm.reset();
+    this.userForm.markAsUntouched();
     this.message = null;
     this.dataSaved = false;
   }
