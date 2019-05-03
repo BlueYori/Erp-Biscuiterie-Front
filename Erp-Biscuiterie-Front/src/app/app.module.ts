@@ -27,7 +27,7 @@ import {
   MatSidenavModule,
   MatListModule,
   MatTabsModule,
-  MatSortModyle,
+  MatSortModule,
   MatPaginatorModule
 } from '@angular/material';
 
@@ -48,6 +48,7 @@ import { RoleComponent } from './model/role/role.component';
 import { StateComponent } from './model/state/state.component';
 import { TypeIngredientComponent } from './model/type-ingredient/type-ingredient.component';
 import { UserComponent } from './model/user/user.component';
+import { CustomerAddComponent } from './model/customer-add/customer-add.component';
 import { CustomerDetailComponent } from './model/customer-detail/customer-detail.component';
 import { CustomerEditComponent } from './model/customer-edit/customer-edit.component';
 import { LoginFormComponent } from './login-form/login-form.component';
@@ -71,7 +72,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
     StateComponent,
     TypeIngredientComponent,
     UserComponent,
-    LoginFormComponent
+    LoginFormComponent,
     CustomerAddComponent,
     CustomerDetailComponent,
     CustomerEditComponent,
