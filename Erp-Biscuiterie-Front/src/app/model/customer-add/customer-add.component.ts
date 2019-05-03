@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CustomerService } from '../../customer.service';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-
-
-
+import { CustomerService } from 'src/app/service/customer-service/customer.service';
 
 @Component({
   selector: 'app-customer-add',
@@ -25,9 +22,9 @@ export class CustomerAddComponent implements OnInit {
 
 
 
-  
+
   constructor(private router: Router, private api: CustomerService, private formBuilder: FormBuilder) { }
-  
+
 
   ngOnInit() {
     this.customerForm = this.formBuilder.group({

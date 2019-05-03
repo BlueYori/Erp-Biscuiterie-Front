@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CustomerService } from '../../customer.service';
+import { CustomerService } from 'src/app/service/customer-service/customer.service';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
 
@@ -36,7 +36,7 @@ export class CustomerEditComponent implements OnInit {
       'customer_directorName': [null, Validators.required],
       'customer_departmentName': [null, Validators.required],
       'customer_reductionId': [null, Validators.required]
-    
+
     });
   }
 
