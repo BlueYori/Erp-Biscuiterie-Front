@@ -1,18 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { CommonModule } from "@angular/common";
 
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatInputModule, MatFormFieldModule, MatSelectModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatIconModule, MatToolbarModule, MatCardModule, MatDialogModule, MatTableModule, MatProgressSpinnerModule, MatMenuModule, MatSidenavModule, MatListModule, MatTabsModule,} from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatInputModule, MatFormFieldModule, MatSelectModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatIconModule, MatToolbarModule, MatCardModule, MatDialogModule, MatTableModule, MatProgressSpinnerModule, MatMenuModule, MatSidenavModule, MatListModule, MatTabsModule, MatSortModule, MatPaginatorModule,} from '@angular/material';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AppComponent } from './app.component';
+import { CommonModule } from "@angular/common";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { LayoutComponent } from './layout/layout.component';
@@ -31,7 +31,9 @@ import { RoleComponent } from './model/role/role.component';
 import { StateComponent } from './model/state/state.component';
 import { TypeIngredientComponent } from './model/type-ingredient/type-ingredient.component';
 import { UserComponent } from './model/user/user.component';
-import { ClientsViewComponent } from './clients-view/clients-view.component';
+import { CustomerAddComponent } from './model/customer-add/customer-add.component';
+import { CustomerDetailComponent } from './model/customer-detail/customer-detail.component';
+import { CustomerEditComponent } from './model/customer-edit/customer-edit.component';
 
 
 
@@ -55,8 +57,10 @@ import { ClientsViewComponent } from './clients-view/clients-view.component';
     RoleComponent,
     StateComponent,
     TypeIngredientComponent,
-    UserComponent
-    ClientsViewComponent
+    UserComponent,
+    CustomerAddComponent,
+    CustomerDetailComponent,
+    CustomerEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,7 +90,16 @@ import { ClientsViewComponent } from './clients-view/clients-view.component';
     FlexLayoutModule,
     MatTabsModule,
     MatSidenavModule,
-    HttpClientModule
+    HttpClientModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
+    MatTableModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule
   ],
   exports: [
     CommonModule,
