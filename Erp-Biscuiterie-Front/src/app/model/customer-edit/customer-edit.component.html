@@ -1,0 +1,87 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" (click)="customerDetails()">
+      <mat-icon>info</mat-icon>
+    </a>
+  </div>
+  <mat-card class="example-card">
+    <form [formGroup]="customerForm" (ngSubmit)="onFormSubmit(customerForm.value)">
+      
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="customer Name" formControlName="customer_name" [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!customerForm.get('customer_name').valid && customerForm.get('customer_name').touched">Please enter customer
+            Name</span>
+        </mat-error>
+      </mat-form-field>
+      
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="customer Adress" formControlName="customer_adress" [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!customerForm.get('customer_adress').valid && customerForm.get('customer_adress').touched">Please enter
+            customer Adress</span>
+        </mat-error>
+      </mat-form-field>
+
+       <mat-form-field class="example-full-width">
+         <input matInput placeholder="customer Phone Number" formControlName="customer_phoneNumber"
+           [errorStateMatcher]="matcher">
+         <mat-error>
+           <span
+             *ngIf="!customerForm.get('customer_phoneNumber').valid && customerForm.get('customer_phoneNumber').touched">Please
+             enter
+             customer Phone Number</span>
+         </mat-error>
+       </mat-form-field>
+    
+       <mat-form-field class="example-full-width">
+         <input matInput placeholder="customer Email " formControlName="customer_email"
+           [errorStateMatcher]="matcher">
+         <mat-error>
+           <span
+             *ngIf="!customerForm.get('customer_email').valid && customerForm.get('customer_email').touched">Please
+             enter customer Email </span>
+         </mat-error>
+       </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="customer Director Name  " formControlName="customer_directorName"
+            [errorStateMatcher]="matcher">
+          <mat-error>
+            <span *ngIf="!customerForm.get('customer_directorName').valid && customerForm.get('customer_directorName').touched">Please
+              enter customer Director Name </span>
+          </mat-error>
+        </mat-form-field>
+           
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="customer Department Name " formControlName="customer_departmentName"
+          [errorStateMatcher]="matcher">
+        <mat-error>
+          <span
+            *ngIf="!customerForm.get('customer_departmentName').valid &&
+            customerForm.get('customer_departmentName').touched">Please
+            enter customer Department Name </span>
+        </mat-error>
+      </mat-form-field>
+
+         <mat-form-field class="example-full-width">
+           <input matInput placeholder="customer Reduction Id " formControlName="customer_reductionId"
+             [errorStateMatcher]="matcher">
+           <mat-error>
+             <span *ngIf="!customerForm.get('customer_reductionId').valid &&
+            customerForm.get('customer_reductionId').touched">Please
+               enter customer Reduction Id </span>
+           </mat-error>
+         </mat-form-field>
+       
+      <div class="button-row">
+        <button type="submit" [disabled]="!customerForm.valid" mat-flat-button color="primary">
+          <mat-icon>save</mat-icon>
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

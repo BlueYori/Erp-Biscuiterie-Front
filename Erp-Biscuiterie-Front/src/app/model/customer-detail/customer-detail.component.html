@@ -1,0 +1,52 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" [routerLink]="['/customer']">
+      <mat-icon>list</mat-icon>
+    </a>
+  </div>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>
+        <h2>{{customer.customer_name}}</h2>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <dl>
+
+        <dt>customer Adress:</dt>
+        <dd>{{customer.customer_adress}}</dd>
+
+        <dt>customer Phone Number:</dt>
+        <dd>{{customer.customer_phoneNumber}}</dd>
+
+        <dt>customer Email:</dt>
+        <dd>{{customer.customer_email}}</dd>
+
+        <dt>customer Director Name:</dt>
+        <dd>{{customer.customer_directorName}}</dd>
+
+        <dt>customer Department Name:</dt>
+        <dd>{{customer.customer_departmentName}}</dd>
+
+        <dt>customer Reduction Id:</dt>
+        <dd>{{customer.customer_recductionId}}</dd>
+
+        <dt>Updated At:</dt>
+        <dd>{{customer.updated_at | date}}</dd>
+      </dl>
+
+
+    </mat-card-content>
+    <mat-card-actions>
+      <a mat-flat-button color="primary" [routerLink]="['/customer-edit', customer._id]">
+        <mat-icon>edit</mat-icon>
+      </a>
+      <a mat-flat-button color="warn" (click)="deletecustomer(customer._id)">
+        <mat-icon>delete</mat-icon>
+      </a>
+    </mat-card-actions>
+  </mat-card>
+</div>

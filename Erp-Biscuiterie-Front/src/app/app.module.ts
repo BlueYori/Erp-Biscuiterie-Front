@@ -27,6 +27,8 @@ import {
   MatSidenavModule,
   MatListModule,
   MatTabsModule,
+  MatSortModule,
+  MatPaginatorModule
 } from '@angular/material';
 
 import { HomeComponent } from './home/home.component';
@@ -46,6 +48,9 @@ import { RoleComponent } from './model/role/role.component';
 import { StateComponent } from './model/state/state.component';
 import { TypeIngredientComponent } from './model/type-ingredient/type-ingredient.component';
 import { UserComponent } from './model/user/user.component';
+import { CustomerAddComponent } from './model/customer-add/customer-add.component';
+import { CustomerDetailComponent } from './model/customer-detail/customer-detail.component';
+import { CustomerEditComponent } from './model/customer-edit/customer-edit.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
@@ -67,7 +72,10 @@ import { LoginFormComponent } from './login-form/login-form.component';
     StateComponent,
     TypeIngredientComponent,
     UserComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    CustomerAddComponent,
+    CustomerDetailComponent,
+    CustomerEditComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -97,7 +105,16 @@ import { LoginFormComponent } from './login-form/login-form.component';
     FlexLayoutModule,
     MatTabsModule,
     MatSidenavModule,
-    HttpClientModule
+    HttpClientModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
+    MatTableModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule
   ],
   exports: [
     CommonModule,
