@@ -13,15 +13,15 @@ export class SidenavListComponent implements OnInit {
   public entitiesLink: any[] = [
     { entity: 'Customer', link: 'customer' },
     { entity: 'Ingredient', link : 'ingredient' },
-    { entity: 'IngredientDisponibility', link : 'ingredientDisponibility' },
+    { entity: 'Ingredient Disponibility', link : 'ingredientDisponibility' },
     { entity: 'Order', link : 'order' },
-    { entity: 'OrderDetails', link : 'orderDetails' },
+    { entity: 'Order Details', link : 'orderDetails' },
     { entity: 'Product', link : 'product' },
     { entity: 'Recipe', link : 'recipe' },
     { entity: 'Reduction', link : 'reduction' },
     { entity: 'Role', link : 'role' },
     { entity: 'State', link : 'state' },
-    { entity: 'TypeIngredient', link : 'typeIngredient' },
+    { entity: 'Type Ingredient', link : 'typeIngredient' },
     { entity: 'User', link : 'user' }
   ];
 
