@@ -7,55 +7,84 @@ import { NgModule } from '@angular/core';
 
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { ConnexionComponent } from './connexion/connexion.component';
 import { OrderComponent } from './model/order/order.component';
 import { OrderDetailsComponent } from './model/order-details/order-details.component';
 import { RecipeComponent } from './model/recipe/recipe.component';
 import { ReductionComponent } from './model/reduction/reduction.component';
 import { StateComponent } from './model/state/state.component';
 import { TypeIngredientComponent } from './model/type-ingredient/type-ingredient.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 import { CustomerDetailComponent } from './model/customer-detail/customer-detail.component';
 import { CustomerAddComponent } from './model/customer-add/customer-add.component';
 import { CustomerEditComponent } from './model/customer-edit/customer-edit.component';
 
 const routes: Routes = [
-  { path: '',
-   component: HomeComponent },
-  { path: 'connexion',
-   component: ConnexionComponent },
-   { path: 'customer',
-   component:  CustomerComponent },
-   { path: 'ingredient',
-   component: IngredientComponent },
-   { path: 'ingredientDisponibility',
-   component: IngredientDisponibilityComponent },
-   { path: 'order',
-   component: OrderComponent },
-   { path: 'orderDetails',
-   component: OrderDetailsComponent },
-   { path: 'recipe',
-   component: RecipeComponent },
-   { path: 'reduction',
-   component: ReductionComponent },
-   { path: 'role',
-   component: RoleComponent },
-   { path: 'state',
-   component: StateComponent },
-   { path: 'typeIngredient',
-   component: TypeIngredientComponent },
-   { path: 'user',
-   component: UserComponent },
-  { path: 'customer',
+  {
+    path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'customer',
+    component: CustomerComponent
+  },
+  {
+    path: 'ingredient',
+    component: IngredientComponent
+  },
+  {
+    path: 'ingredientDisponibility',
+    component: IngredientDisponibilityComponent
+  },
+  {
+    path: 'order',
+    component: OrderComponent
+  },
+  {
+    path: 'orderDetails',
+    component: OrderDetailsComponent
+  },
+  {
+    path: 'product',
+    component: ProductComponent
+  },
+  {
+    path: 'recipe',
+    component: RecipeComponent
+  },
+  {
+    path: 'reduction',
+    component: ReductionComponent
+  },
+  {
+    path: 'role',
+    component: RoleComponent
+  },
+  {
+    path: 'state',
+    component: StateComponent
+  },
+  {
+    path: 'typeIngredient',
+    component: TypeIngredientComponent
+  },
+  {
+    path: 'user',
+    component: UserComponent
+  },
+  {
+    path: 'login',
+    component: LoginFormComponent
+  }
     component: CustomerComponent,
     data: { title: 'List of customer' }
   },
   { path: 'customer-details/:id',
     component: CustomerDetailComponent,
-    data: { title: 'customer Details' }
   },
+    data: { title: 'customer Details' }
   { path: 'customer-add',
-    component: CustomerAddComponent,
     data: { title: 'Add customer' }
+    component: CustomerAddComponent,
   },
   { path: 'customer-edit/:id',
     component: CustomerEditComponent,
@@ -68,15 +97,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
-
-
-
-/*
-pour rappel :
-
-userComponent  = homeComponent
-LoginComponent = ConnexionComponent
-
-*/
-
