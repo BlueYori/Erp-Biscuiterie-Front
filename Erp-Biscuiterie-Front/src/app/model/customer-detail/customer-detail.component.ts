@@ -15,7 +15,7 @@ export class CustomerDetailComponent implements OnInit {
   
   isLoadingResults = true;
 
-  constructor(private route: ActivatedRoute, private api: ApiService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private api: CustomerService, private router: Router) { }
 
   ngOnInit() {
     console.log(this.route.snapshot.params['id']);
