@@ -1,0 +1,17 @@
+.login-main {
+  margin-bottom: 23%;
+}
+
+.login-title {
+  font-family: 'Bree Serif', serif;
+  font-size: 75px;
+  color: rgba(236, 240, 241, 1);
+  text-align: center;
+  margin-top: 15%;
+  margin-bottom: 1%;
+}
+
+mat-card {
+  min-width: 30%;
+  background-color: rgba(236, 240, 241, 0.6);
+}

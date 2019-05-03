@@ -11,8 +11,8 @@ import { Customer } from '../../customer';
 export class CustomerDetailComponent implements OnInit {
 
   customer: Customer = { _id: null, customer_name: '', customer_adress: '', customer_phoneNumber: '', customer_email: '', customer_directorName: '', customer_departmentName: '', customer_reductionId: null , updated_at: null };
-  
-  
+
+
   isLoadingResults = true;
 
   constructor(private route: ActivatedRoute, private api: CustomerService, private router: Router) { }
