@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FormBuilder, Validators, FormGroup, FormGroupDirective } from '@angular/forms';
-import { User } from 'src/app/user';
-import { UserService } from 'src/app/user.service';
-
+import { User } from 'src/app/service/user-service/user';
+import { UserService } from 'src/app/service/user-service/user.service';
 
 @Component({
   selector: 'app-user',
