@@ -1,54 +1,33 @@
-/* Structure */
-.example-container {
-  position: relative;
-  padding: 5px;
+.fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
 }
 
-.example-form {
+.container {
+  padding: 10px;
+}
+
+#manage-customer {
   min-width: 150px;
   max-width: 500px;
   width: 100%;
+  margin: 0 auto;
 }
 
-.example-full-width {
+.z-depth1 {
+  /* border: 1px solid rgba(0,0,0,.03); */
+  box-shadow: 0 2px 2px rgba(0,0,0,.24), 0 0 2px rgba(0,0,0,.12);
+  /* margin: 4px; */
+}
+
+.form {
+  padding: 0 15px;
+}
+
+.form-element {
+  padding: 5px 0px 25px 2px;
   width: 100%;
 }
 
-.example-full-width:nth-last-child() {
-  margin-bottom: 10px;
-}
-
-.button-row {
-  margin: 10px 0;
-}
-
-.mat-flat-button {
-  margin: 5px;
-}
-/* Structure */
-.example-container {
-  position: relative;
-  padding: 5px;
-}
-
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
-
-.example-full-width {
-  width: 100%;
-}
-
-.example-full-width:nth-last-child() {
-  margin-bottom: 10px;
-}
-
-.button-row {
-  margin: 10px 0;
-}
-
-.mat-flat-button {
-  margin: 5px;
-}
+.form-element .mat-radio-button { margin-right: 10px !important; }

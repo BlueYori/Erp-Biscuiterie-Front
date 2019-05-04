@@ -12,7 +12,6 @@ export class CustomerDetailComponent implements OnInit {
 
   customer: Customer = { _id: null, customer_name: '', customer_adress: '', customer_phoneNumber: '', customer_email: '', customer_directorName: '', customer_departmentName: '', customer_reductionId: null , updated_at: null };
 
-
   isLoadingResults = true;
 
   constructor(private route: ActivatedRoute, private api: CustomerService, private router: Router) { }
@@ -21,7 +20,6 @@ export class CustomerDetailComponent implements OnInit {
     console.log(this.route.snapshot.params['id']);
     this.getCustomerDetails(this.route.snapshot.params['id']);
   }
-
 
   getCustomerDetails(id) {
     this.api.getCustomer(id)
@@ -44,6 +42,4 @@ export class CustomerDetailComponent implements OnInit {
       }
       );
   }
-
-
 }

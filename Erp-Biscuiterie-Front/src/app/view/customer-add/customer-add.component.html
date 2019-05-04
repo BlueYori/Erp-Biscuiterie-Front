@@ -1,85 +1,73 @@
-<div class="example-container mat-elevation-z8">
-  <div class="example-loading-shade" *ngIf="isLoadingResults">
-    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-  </div>
-  <div class="button-row">
-    <a mat-flat-button color="primary" [routerLink]="['/customer']">
-      <mat-icon>list</mat-icon>
-    </a>
-  </div>
-  <mat-card class="example-card">
-    <form [formGroup]="customerForm" (ngSubmit)="onFormSubmit(customerForm.value)">
+<div class="container">
 
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="customer Name" formControlName="customer_name" [errorStateMatcher]="matcher">
-        <mat-error>
-          <span *ngIf="!customerForm.get('customer_name').valid && customerForm.get('customer_name').touched">Please enter customer
-            Name</span>
-        </mat-error>
-      </mat-form-field>
+  <mat-card align="center">
+    <div id="manage-customer" class="z-depth1">
 
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="customer Adress" formControlName="customer_name" [errorStateMatcher]="matcher">
-        <mat-error>
-          <span *ngIf="!customerForm.get('customer_adress').valid && customerForm.get('customer_adress').touched">Please
-            enter customer address</span>
-        </mat-error>
-      </mat-form-field>
+      <mat-toolbar class="title-form" color="Tu p">
+        <div align="center" style="color:black; text-align:center; width:100%">
+          <p>Ajouter un client</p>
+        </div>
+      </mat-toolbar>
 
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="customer Phone Number" formControlName="customer_phoneNumber" [errorStateMatcher]="matcher">
-        <mat-error>
-          <span
-            *ngIf="!customerForm.get('customer_phoneNumber').valid &&
-            customerForm.get('customer_phoneNumber').touched">Please
-            enter customer
-            Phone Number</span>
-        </mat-error>
-      </mat-form-field>
+      <br><br>
 
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="customer Email" formControlName="customer_email" [errorStateMatcher]="matcher">
-        <mat-error>
-          <span *ngIf="!customerForm.get('customer_email').valid && customerForm.get('customer_email').touched">Please enter
-            customer Email</span>
-        </mat-error>
-      </mat-form-field>
+      <mat-card-content align="left">
+        <form [formGroup]="customerForm" (ngSubmit)="onFormSubmit(customerForm.value)" class="form">
+          <mat-form-field class="form-element">
+            <input formControlName="customer_name" matTooltip="Enter Name" matInput placeholder="Name">
+            <mat-error *ngIf="!customerForm.get('customer_name').valid && customerForm.get('customer_name').touched">
+              Ce champs est obligatoire
+            </mat-error>
+          </mat-form-field>
 
+          <mat-form-field class="form-element">
+            <input formControlName="customer_adress" matTooltip="Enter User Adress" matInput placeholder="Address">
+            <mat-error *ngIf="!customerForm.get('customer_adress').valid && customerForm.get('customer_adress').touched">
+              Ce champs est obligatoire
+            </mat-error>
+          </mat-form-field>
 
-   <mat-form-field class="example-full-width">
-     <input matInput placeholder="customer Director Name" formControlName="customer_directorName" [errorStateMatcher]="matcher">
-     <mat-error>
-       <span *ngIf="!customerForm.get('customer_directorName').valid && customerForm.get('customer_directorName').touched">Please
-         enter customer Director Name</span>
-     </mat-error>
-   </mat-form-field>
+          <mat-form-field class="form-element">
+            <input formControlName="customer_phoneNumber" matTooltip="Enter User Phone Number" matInput placeholder="Phone Number">
+            <mat-error *ngIf="!customerForm.get('customer_phoneNumber').valid && customerForm.get('customer_phoneNumber').touched">
+              Ce champs est obligatoire
+            </mat-error>
+          </mat-form-field>
 
-     <mat-form-field class="example-full-width">
-       <input matInput placeholder="customer Department Name" formControlName="customer_departmentName"
-         [errorStateMatcher]="matcher">
-       <mat-error>
-         <span
-           *ngIf="!customerForm.get('customer_dipartmentName').valid && customerForm.get('customer_dipartmentName').touched">Please
-           enter customer Department Name</span>
-       </mat-error>
-     </mat-form-field>
+          <mat-form-field class="form-element">
+            <input formControlName="customer_email" matTooltip="Enter User Email" matInput placeholder="Email">
+            <mat-error *ngIf="!customerForm.get('customer_email').valid && customerForm.get('customer_email').touched">
+              Ce champs est obligatoire
+            </mat-error>
+          </mat-form-field>
 
-       <mat-form-field class="example-full-width">
-         <input matInput placeholder="customer Reduction Id" formControlName="customer_reductionId"
-           [errorStateMatcher]="matcher">
-         <mat-error>
-           <span
-             *ngIf="!customerForm.get('customer_reductionId').valid && customerForm.get('customer_reductionId').touched">Please
-             enter customer Reduction Id</span>
-         </mat-error>
-       </mat-form-field>
+          <mat-form-field class="form-element">
+            <input formControlName="customer_directorName" matTooltip="Enter Director Name" matInput placeholder="Director Name">
+            <mat-error *ngIf="!customerForm.get('customer_directorName').valid && customerForm.get('customer_directorName').touched">
+              Ce champs est obligatoire
+            </mat-error>
+          </mat-form-field>
 
+          <mat-form-field class="form-element">
+            <input formControlName="customer_departmentName" matTooltip="Enter Department Name" matInput placeholder="Department Name">
+            <mat-error *ngIf="!customerForm.get('customer_dipartmentName').valid && customerForm.get('customer_dipartmentName').touched">
+              Ce champs est obligatoire
+            </mat-error>
+          </mat-form-field>
 
-      <div class="button-row">
-        <button type="submit" [disabled]="!customerForm.valid" mat-flat-button color="primary">
-          <mat-icon>save</mat-icon>
-        </button>
-      </div>
-    </form>
+          <mat-form-field class="form-element">
+            <input formControlName="customer_reductionId" matTooltip="Enter Reduction ID" matInput placeholder="Reduction ID">
+            <mat-error *ngIf="!customerForm.get('customer_reductionId').valid && customerForm.get('customer_reductionId').touched">
+              Ce champs est obligatoire
+            </mat-error>
+          </mat-form-field>
+
+          <mat-card-actions align="center">
+            <button type="submit" mat-raised-button color="accent" matToolTip="Click Submit Button" [disabled]="!customerForm.valid">Submit</button>
+          </mat-card-actions>
+
+        </form>
+      </mat-card-content>
+    </div>
   </mat-card>
 </div>

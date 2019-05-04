@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { CustomerService } from './../../service/customer-service/customer.service';
+import { CustomerService } from '../../service/customer-service/customer.service';
 
 @Component({
   selector: 'app-customer-add',
@@ -33,6 +33,7 @@ export class CustomerAddComponent implements OnInit {
       'customer_reductionId': [null, Validators.required]
     });
   }
+
   onFormSubmit(form: NgForm) {
     this.isLoadingResults = true;
     this.api.addCustomer(form)

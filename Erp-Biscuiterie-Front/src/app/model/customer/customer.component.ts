@@ -1,6 +1,8 @@
+import { CustomerAddComponent } from './../../view/customer-add/customer-add.component';
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from './../../service/customer-service/customer.service';
 import { Customer } from './../../service/customer-service/customer';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 
 @Component({
   selector: 'app-customer',
@@ -14,7 +16,7 @@ export class CustomerComponent implements OnInit {
   data: Customer[] = [];
   isLoadingResults = true;
 
-  constructor(private api: CustomerService) { }
+  constructor(private api: CustomerService, private dialog: MatDialog) { }
 
    ngOnInit() {
     this.api.getCustomers()
@@ -26,6 +28,15 @@ export class CustomerComponent implements OnInit {
         console.log(err);
         this.isLoadingResults = false;
       });
+   }
+
+   openDialog() {
+     const dialogConfig = new MatDialogConfig();
+
+     dialogConfig.disableClose = true;
+     dialogConfig.autoFocus = true;
+
+     this.dialog.open(CustomerAddComponent, dialogConfig);
    }
 
 }
