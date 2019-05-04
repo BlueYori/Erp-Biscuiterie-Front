@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CustomerService } from '../../customer.service';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-
-
-
+import { CustomerService } from './../../service/customer-service/customer.service';
 
 @Component({
   selector: 'app-customer-add',
@@ -23,11 +20,7 @@ export class CustomerAddComponent implements OnInit {
   customer_reductionId: number;
   isLoadingResults = false;
 
-
-
-  
   constructor(private router: Router, private api: CustomerService, private formBuilder: FormBuilder) { }
-  
 
   ngOnInit() {
     this.customerForm = this.formBuilder.group({
@@ -38,8 +31,6 @@ export class CustomerAddComponent implements OnInit {
       'customer_directorName': [null, Validators.required],
       'customer_departmentName': [null, Validators.required],
       'customer_reductionId': [null, Validators.required]
-
-
     });
   }
   onFormSubmit(form: NgForm) {
