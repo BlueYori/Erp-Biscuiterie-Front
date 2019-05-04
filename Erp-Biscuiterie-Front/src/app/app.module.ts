@@ -1,4 +1,4 @@
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { CustomMaterialModule } from './core/material.module';
@@ -14,6 +14,7 @@ import {
   MatCheckboxModule,
   MatInputModule,
   MatFormFieldModule,
+  MatRadioModule,
   MatSelectModule,
   ErrorStateMatcher,
   ShowOnDirtyErrorStateMatcher,
@@ -31,51 +32,18 @@ import {
   MatPaginatorModule
 } from '@angular/material';
 
-import { HomeComponent } from './home/home.component';
 import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CustomerComponent } from './model/customer/customer.component';
-import { IngredientComponent } from './model/ingredient/ingredient.component';
-import { IngredientDisponibilityComponent } from './model/ingredient-disponibility/ingredient-disponibility.component';
-import { OrderComponent } from './model/order/order.component';
-import { OrderDetailsComponent } from './model/order-details/order-details.component';
-import { ProductComponent } from './model/product/product.component';
-import { RecipeComponent } from './model/recipe/recipe.component';
-import { ReductionComponent } from './model/reduction/reduction.component';
-import { RoleComponent } from './model/role/role.component';
-import { StateComponent } from './model/state/state.component';
-import { TypeIngredientComponent } from './model/type-ingredient/type-ingredient.component';
-import { UserComponent } from './model/user/user.component';
-import { CustomerAddComponent } from './model/customer-add/customer-add.component';
-import { CustomerDetailComponent } from './model/customer-detail/customer-detail.component';
-import { CustomerEditComponent } from './model/customer-edit/customer-edit.component';
-import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     LayoutComponent,
     HeaderComponent,
     SidenavListComponent,
-    CustomerComponent,
-    IngredientComponent,
-    IngredientDisponibilityComponent,
-    OrderComponent,
-    OrderDetailsComponent,
-    ProductComponent,
-    RecipeComponent,
-    ReductionComponent,
-    RoleComponent,
-    StateComponent,
-    TypeIngredientComponent,
-    UserComponent,
-    LoginFormComponent,
-    CustomerAddComponent,
-    CustomerDetailComponent,
-    CustomerEditComponent,
+    routingComponents
   ],
   imports: [
     AppRoutingModule,
@@ -86,6 +54,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
     MatButtonModule,
     MatCheckboxModule,
     MatInputModule,
+    MatRadioModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatSelectModule,

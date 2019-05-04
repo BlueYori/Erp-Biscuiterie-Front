@@ -1,3 +1,96 @@
-<p>
-  user works!
-</p>
+<div class="container">  
+  
+    <mat-card align="center">
+      <div id="manage-user" class="z-depth1">
+        <mat-toolbar class="title-form" color="accent">  
+          <div align="center" style="color:white;text-align: center; width:100%;">  
+            <p>Ajouter un utilisateur</p>
+          </div>    
+        </mat-toolbar>  
+        <br><br>  
+        <mat-card-content align="left">
+          <form [formGroup]="userForm" (ngSubmit)="onFormSubmit(userForm.value)" class="form">  
+            <mat-form-field class="form-element">  
+              <input formControlName="firstname" matTooltip="Enter User Firstname" matInput placeholder="User Firstname">
+              <mat-error *ngIf="!userForm.get('firstname').valid && userForm.get('firstname').touched">  
+                Ce champ est obligatoire
+              </mat-error>  
+            </mat-form-field>  
+            
+            <mat-form-field class="form-element">  
+              <input formControlName="lastname" matTooltip="Enter User Lastname" matInput placeholder="User Lastname">
+              <mat-error *ngIf="!userForm.get('lastname').valid && userForm.get('lastname').touched">  
+                Ce champ est obligatoire
+              </mat-error>   
+            </mat-form-field>  
+            
+            
+            <mat-form-field class="form-element">  
+              <input formControlName="email" matTooltip="Enter Email" matInput placeholder="Email"> 
+              <mat-error *ngIf="!userForm.get('email').valid && userForm.get('email').touched">  
+                {{ getErrorEmail() }}
+              </mat-error> 
+            </mat-form-field>  
+              
+        
+            <div class="form-element">
+              <label style="margin-right:5px; vertical-align:middle;">Rôle: </label>  
+              
+              <mat-radio-group formControlName="floatLabel" matTooltip="Enter Role"formControlName="roleId">  
+                  <mat-radio-button value="1">Admin</mat-radio-button>    
+                  <mat-radio-button value="2">Comptable</mat-radio-button>  
+              </mat-radio-group>  
+              <mat-error *ngIf="!userForm.get('roleId').valid && userForm.get('roleId').touched">  
+                Ce champ est obligatoire
+              </mat-error>  
+            </div>
+            <mat-form-field class="form-element">  
+              <input matTooltip="Enter Password"formControlName="password" matInput placeholder="Password">
+              <mat-error *ngIf="!userForm.get('password').valid && userForm.get('password').touched">  
+                Ce champ est obligatoire
+              </mat-error> 
+            </mat-form-field>  
+              
+            <mat-card-actions align="center">
+              <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!userForm.valid">Submit</button>      
+              <button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>    
+            </mat-card-actions>
+          
+            <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">  
+              {{message}}  
+            </p>
+                      
+          <br><br>  
+            
+          </form>  
+        </mat-card-content> 
+      </div>
+
+      <table class="table" >  
+          <tr ngclass="btn-primary">  
+            <th class="tbl2">Id</th>
+            <th class="tbl2">Firstname</th>  
+            <th class="tbl2">Lastname</th>  
+            <th class="tbl2">Email</th>  
+            <th class="tbl2">Role</th>  
+            <th class="tbl2">Edit</th>  
+            <th class="tbl2">Delete</th>  
+          </tr>  
+          <tr *ngFor="let user of allUsers | async">  
+            <td class="tbl2">{{user.id}}</td>  
+            <td class="tbl2">{{user.firstname}}</td>  
+            <td class="tbl2">{{user.lastname}}</td>
+            <td class="tbl2">{{user.email}}</td>
+            <td class="tbl2">{{user.roleId == 1 ? 'Administrateur' : 'Comptable'}}</td>  
+            <td class="tbl2">  
+              <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadUserToEdit(user.id)">Edit</button>  
+            </td>  
+            <td class="tbl2">  
+              <button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deleteUser(user.id)">Delete</button>  
+            </td>  
+          </tr>  
+  
+        </table>  
+    </mat-card>  
+    </div>
+  

@@ -99,3 +99,19 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+export const routingComponents = [
+  HomeComponent,
+  CustomerComponent,
+  IngredientComponent,
+  IngredientDisponibilityComponent,
+  OrderComponent,
+  OrderDetailsComponent,
+  ProductComponent,
+  RecipeComponent,
+  ReductionComponent,
+  RoleComponent,
+  StateComponent,
+  TypeIngredientComponent,
+  UserComponent,
+  LoginFormComponent
+];
