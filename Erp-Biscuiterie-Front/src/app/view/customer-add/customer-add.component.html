@@ -3,9 +3,9 @@
   <mat-card align="center">
     <div id="manage-customer" class="z-depth1">
 
-      <mat-toolbar class="title-form" color="Tu p">
+      <mat-toolbar class="title-form" color="accent">
         <div align="center" style="color:black; text-align:center; width:100%">
-          <p>Ajouter un client</p>
+          AJOUTER UN CLIENT
         </div>
       </mat-toolbar>
 
@@ -37,7 +37,7 @@
           <mat-form-field class="form-element">
             <input formControlName="customer_email" matTooltip="Enter User Email" matInput placeholder="Email">
             <mat-error *ngIf="!customerForm.get('customer_email').valid && customerForm.get('customer_email').touched">
-              Ce champs est obligatoire
+                {{ getErrorEmail() }}
             </mat-error>
           </mat-form-field>
 
