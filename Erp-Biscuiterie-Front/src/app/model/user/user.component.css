@@ -1,3 +1,20 @@
+  #manage-user {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  #show-users {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 3em;
+  }
+
+  #show-users table, #show-users mat-form-field {
+    width: 100%; 
+  }
+
 .fill-remaining-space {
     /* This fills the remaining space, by using flexbox.
        Every toolbar row uses a flexbox row layout. */
@@ -6,13 +23,6 @@
 
   .container {
     padding: 10px;
-  }
-
-  #manage-user {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-    margin: 0 auto;
   }
 
   .z-depth1 {

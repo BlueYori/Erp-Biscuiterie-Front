@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { FormBuilder, Validators, FormGroup, FormGroupDirective } from '@angular/forms';
 import { User } from 'src/app/service/user-service/user';
 import { UserService } from 'src/app/service/user-service/user.service';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-user',
@@ -16,6 +17,10 @@ export class UserComponent implements OnInit {
   allUsers: Observable<User[]>;
   userIdUpdate;
   message = null;
+
+  // Table
+  public displayedColumns = ['id', 'firstname', 'email', 'roleId'];
+  dataSource = new MatTableDataSource<User>();
 
   constructor(private formbuilder: FormBuilder, private userService: UserService) { }
 
@@ -39,7 +44,14 @@ export class UserComponent implements OnInit {
   }
 
   loadAllUsers() {
+    // Double appel dégueu, a revoir
     this.allUsers = this.userService.getAllUser();
+    this.userService.getAllUser().subscribe(
+      users => {
+        this.dataSource.data = users as User[];
+        console.log (users);
+      }
+    );
   }
 
   onFormSubmit() {
@@ -51,7 +63,7 @@ export class UserComponent implements OnInit {
 
   loadUserToEdit(userId: number) {
     this.userService.getUserById(userId).subscribe((user) => {
-      console.log(user);
+
       this.message = null;
       this.dataSaved = null;
       this.userIdUpdate = user.id;
@@ -88,7 +100,10 @@ export class UserComponent implements OnInit {
           this.loadAllUsers();
           this.userIdUpdate = null;
           this.userForm.reset();
-        }
+        },
+        error  => {
+          console.log('Error', error);
+          }
       );
     }
   }

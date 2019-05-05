@@ -23,11 +23,10 @@ export class UserService {
         'Content-Type': 'application/json'
       })
     };
-    console.log(this.url + userId.toString());
     return this.http.get<User>(this.url + userId.toString(), httpOptions)
     .pipe(
       tap(_ => console.log(`fetched user id=${userId}`)),
-      catchError(this.handleError<User>(`getHero id=${userId}`))
+      catchError(this.handleError<User>(`getUser id=${userId}`))
     );
   }
 
@@ -48,8 +47,8 @@ export class UserService {
     };
 
     const userId = user.id;
-    console.log(user);
-    return this.http.put<User>(this.url + userId.toString(), httpOptions);
+
+    return this.http.put<User>(this.url + userId.toString(), user, httpOptions);
   }
 
   deleteUser(userId: number): Observable<number> {
