@@ -21,7 +21,7 @@ export class UserComponent implements OnInit {
   message = null;
 
   // Table
-  public displayedColumns = ['id', 'firstname', 'email', 'roleId'];
+  public displayedColumns = ['id', 'firstname', 'email', 'roleId', 'actions'];
   dataSource = new MatTableDataSource<User>();
 
   constructor(private formbuilder: FormBuilder, private userService: UserService, private dialog: MatDialog) { }
@@ -42,10 +42,16 @@ export class UserComponent implements OnInit {
   openDialog() {
     const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.disableClose = true;
+    dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
 
-    this.dialog.open(UserAddComponent, dialogConfig);
+    const dialogRef = this.dialog.open(UserAddComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+      () => {
+        this.loadAllUsers();
+      }
+    );
   }
 
   getErrorEmail() {

@@ -15,6 +15,14 @@
     width: 100%; 
   }
 
+  #show-users table th:last-child {
+    width: 180px;
+  }
+
+  #show-users table .btn-edit {
+    margin-right: 10px;
+  }
+
 .fill-remaining-space {
     /* This fills the remaining space, by using flexbox.
        Every toolbar row uses a flexbox row layout. */

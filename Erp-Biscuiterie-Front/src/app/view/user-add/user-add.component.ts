@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FormBuilder, Validators, FormGroup, FormGroupDirective } from '@angular/forms';
 import { User } from 'src/app/service/user-service/user';
 import { UserService } from 'src/app/service/user-service/user.service';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { UserComponent } from 'src/app/model/user/user.component';
 
 @Component({
   selector: 'app-user-add',
@@ -17,7 +18,13 @@ export class UserAddComponent implements OnInit {
   userIdUpdate;
   message = null;
 
-  constructor(private formbuilder: FormBuilder, private userService: UserService) { }
+  constructor(
+    private formbuilder: FormBuilder,
+    private userService: UserService,
+    private dialogRef: MatDialogRef<UserComponent>,
+    @Inject(MAT_DIALOG_DATA) data) {
+
+    }
 
   ngOnInit() {
     // tslint:disable-next-line:max-line-length
@@ -107,6 +114,8 @@ export class UserAddComponent implements OnInit {
     this.userForm.markAsUntouched();
     this.message = null;
     this.dataSaved = false;
+
+    this.dialogRef.close(this.userForm.value);
   }
 
 }
