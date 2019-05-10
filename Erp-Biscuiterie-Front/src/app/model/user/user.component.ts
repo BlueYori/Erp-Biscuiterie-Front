@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FormBuilder, Validators, FormGroup, FormGroupDirective } from '@angular/forms';
-import { User } from 'src/app/service/user-service/user';
-import { UserService } from 'src/app/service/user-service/user.service';
 import { MatTableDataSource } from '@angular/material';
 import { MatDialog, MatDialogConfig } from '@angular/material';
+
+import { User } from 'src/app/service/user-service/user';
+import { UserService } from 'src/app/service/user-service/user.service';
 import { UserAddComponent } from 'src/app/view/user-add/user-add.component';
 
 @Component({

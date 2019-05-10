@@ -1,48 +1,53 @@
-/* Structure */
-.example-container {
-  position: relative;
-  padding: 5px;
-}
-
-.example-table-container {
-  position: relative;
-  max-height: 400px;
-  overflow: auto;
-}
-
-table {
+#manage-user {
+  min-width: 150px;
+  max-width: 500px;
   width: 100%;
+  margin: 0 auto;
 }
 
-.example-loading-shade {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 56px;
-  right: 0;
-  background: rgba(0, 0, 0, 0.15);
-  z-index: 1;
-  display: flex;
+#show-customers {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 3em;
+}
+
+#show-customers table, #show-users mat-form-field {
+  width: 100%; 
+}
+
+#show-customers table th:last-child {
+  width: 180px;
+}
+
+#show-customers table .btn-edit {
+  margin-right: 10px;
+}
+
+.fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+.container {
+  padding: 10px;
   align-items: center;
   justify-content: center;
 }
 
-.example-rate-limit-reached {
-  color: #980000;
-  max-width: 360px;
-  text-align: center;
+.z-depth1 {
+  /* border: 1px solid rgba(0,0,0,.03); */
+  box-shadow: 0 2px 2px rgba(0,0,0,.24), 0 0 2px rgba(0,0,0,.12);
+  /* margin: 4px; */
 }
 
-/* Column Widths */
-.mat-column-number,
-.mat-column-state {
-  max-width: 64px;
+.form {
+  padding: 0 15px;
 }
 
-.mat-column-created {
-  max-width: 124px;
+.form-element {
+  padding: 5px 0px 25px 2px;
+  width: 100%;
 }
 
-.mat-flat-button {
-  margin: 5px;
-}
+.form-element .mat-radio-button { margin-right: 10px !important; }

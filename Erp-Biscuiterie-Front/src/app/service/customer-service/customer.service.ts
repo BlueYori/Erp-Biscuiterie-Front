@@ -1,69 +1,70 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { catchError, tap, map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Customer } from './customer';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-const apiUrl = 'https://localhost:44386/api/customer';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
 
+  url = 'https://localhost:5001/api/customer/';
+
   constructor(private http: HttpClient) { }
 
-  getCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(apiUrl)
-      .pipe(
-        tap(customers => console.log('Fetch customers')),
-        catchError(this.handleError('getCustomers', []))
-      );
+  getAllCustomers(): Observable<Customer[]> {
+    return this.http.get<Customer[]>(this.url);
   }
 
-  getCustomer(id: number): Observable<Customer> {
-    const url = `${apiUrl}/${id}`;
-    return this.http.get<Customer>(url).pipe(
-      tap(_ => console.log(`fetched customer id=${id}`)),
-      catchError(this.handleError<Customer>(`getCustomer id=${id}`))
+  getCustomerById(customerId: number): Observable<Customer> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.get<Customer>(this.url + customerId.toString(), httpOptions)
+    .pipe(
+      tap(_ => console.log(`fetched customer id=${customerId}`)),
+      catchError(this.handleError<Customer>(`getCustomer id=${customerId}`))
     );
   }
 
-  addCustomer(customer): Observable<Customer> {
-    return this.http.post<Customer>(apiUrl, customer, httpOptions).pipe(
-      tap((customer: Customer) => console.log(`added customer w/ id=${customer._id}`)),
-      catchError(this.handleError<Customer>('addCustomer'))
-    );
+  createCustomer(customer: Customer): Observable<Customer> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post<Customer>(this.url, customer, httpOptions);
   }
 
-  updateCustomer(id, customer): Observable<any> {
-    const url = `${apiUrl}/${id}`;
-    return this.http.put(url, customer, httpOptions).pipe(
-      tap(_ => console.log(`updated customer id=${id}`)),
-      catchError(this.handleError<any>('updateCustomer'))
-    );
+  updateCustomer(customer: Customer): Observable<Customer> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+
+    const customerId = customer.id;
+
+    return this.http.put<Customer>(this.url + customerId.toString(), customer, httpOptions);
   }
 
-  deleteCustomer(id): Observable<Customer> {
-    const url = `${apiUrl}/${id}`;
+  deleteCustomer(customerId: number): Observable<number> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
 
-    return this.http.delete<Customer>(url, httpOptions).pipe(
-      tap(_ => console.log(`deleted customer id=${id}`)),
-      catchError(this.handleError<Customer>('deleteCustomer'))
-    );
+    return this.http.delete<number>(this.url + customerId.toString(), httpOptions);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
+      console.error(error);
 
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }

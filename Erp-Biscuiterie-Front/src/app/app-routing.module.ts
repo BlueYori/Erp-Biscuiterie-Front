@@ -18,9 +18,7 @@ import { IngredientDisponibilityComponent } from './model/ingredient-disponibili
 import { CustomerComponent } from './model/customer/customer.component';
 
 // VIEWS COMPONENTS
-import { CustomerEditComponent } from './view/customer-edit/customer-edit.component';
 import { CustomerAddComponent } from './view/customer-add/customer-add.component';
-import { CustomerDetailComponent } from './view/customer-detail/customer-detail.component';
 import { UserAddComponent } from './view/user-add/user-add.component';
 
 const routes: Routes = [
@@ -86,16 +84,8 @@ const routes: Routes = [
   // --------------------------
 
   {
-    path: 'customer-details/:id',
-    component: CustomerDetailComponent,
-  },
-  {
     path: 'customer-add',
     component: CustomerAddComponent,
-  },
-  {
-    path: 'customer-edit/:id',
-    component: CustomerEditComponent,
   },
   {
     path: 'user-add',
@@ -123,8 +113,6 @@ export const routingComponents = [
   TypeIngredientComponent,
   UserComponent,
   LoginFormComponent,
-  CustomerEditComponent,
   CustomerAddComponent,
-  CustomerDetailComponent,
   UserAddComponent
 ];
