@@ -4,27 +4,20 @@ import { FormBuilder, Validators, FormGroup, FormGroupDirective } from '@angular
 import { User } from 'src/app/service/user-service/user';
 import { UserService } from 'src/app/service/user-service/user.service';
 import { MatTableDataSource } from '@angular/material';
-import { MatDialog, MatDialogConfig } from '@angular/material';
-import { UserAddComponent } from 'src/app/view/user-add/user-add.component';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  selector: 'app-user-add',
+  templateUrl: './user-add.component.html',
+  styleUrls: ['./user-add.component.css']
 })
-export class UserComponent implements OnInit {
+export class UserAddComponent implements OnInit {
 
   dataSaved = false;
   userForm: FormGroup;
-  allUsers: Observable<User[]>;
   userIdUpdate;
   message = null;
 
-  // Table
-  public displayedColumns = ['id', 'firstname', 'email', 'roleId'];
-  dataSource = new MatTableDataSource<User>();
-
-  constructor(private formbuilder: FormBuilder, private userService: UserService, private dialog: MatDialog) { }
+  constructor(private formbuilder: FormBuilder, private userService: UserService) { }
 
   ngOnInit() {
     // tslint:disable-next-line:max-line-length
@@ -36,33 +29,12 @@ export class UserComponent implements OnInit {
       roleId: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
-    this.loadAllUsers();
-  }
-
-  openDialog() {
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-
-    this.dialog.open(UserAddComponent, dialogConfig);
   }
 
   getErrorEmail() {
     return this.userForm.get('email').hasError('required') ? 'Ce champ est requis' :
       this.userForm.get('email').hasError('pattern') ? 'Adresse email non valide' :
         this.userForm.get('email').hasError('alreadyInUse') ? 'This emailaddress is already in use' : '';
-  }
-
-  loadAllUsers() {
-    // Double appel dégueu, a revoir
-    this.allUsers = this.userService.getAllUser();
-    this.userService.getAllUser().subscribe(
-      users => {
-        this.dataSource.data = users as User[];
-        console.log (users);
-      }
-    );
   }
 
   onFormSubmit() {
@@ -97,7 +69,6 @@ export class UserComponent implements OnInit {
         data => {
           this.dataSaved = true;
           this.message = 'L\'utilisateur à bien été ajouté';
-          this.loadAllUsers();
           this.userIdUpdate = null;
           this.userForm.reset();
         }
@@ -108,7 +79,6 @@ export class UserComponent implements OnInit {
         () => {
           this.dataSaved = true;
           this.message = 'L\'utilisateur à bien été modifié';
-          this.loadAllUsers();
           this.userIdUpdate = null;
           this.userForm.reset();
         },
@@ -125,7 +95,6 @@ export class UserComponent implements OnInit {
         () => {
           this.dataSaved = true;
           this.message = 'L\'utilisateur à bien été supprimé';
-          this.loadAllUsers();
           this.userIdUpdate = null;
           this.userForm.reset();
         }

@@ -1,11 +1,11 @@
 <div class="container">
 
-  <mat-card align="center">
+  <mat-card>
     <div id="manage-customer" class="z-depth1">
 
       <mat-toolbar class="title-form" color="accent">
-        <div align="center" style="color:black; text-align:center; width:100%">
-          AJOUTER UN CLIENT
+        <div align="center" style="text-align: center; width:100%;">
+          <p>AJOUTER UN CLIENT</p>
         </div>
       </mat-toolbar>
 
@@ -22,14 +22,17 @@
 
           <mat-form-field class="form-element">
             <input formControlName="customer_adress" matTooltip="Enter User Adress" matInput placeholder="Address">
-            <mat-error *ngIf="!customerForm.get('customer_adress').valid && customerForm.get('customer_adress').touched">
+            <mat-error
+              *ngIf="!customerForm.get('customer_adress').valid && customerForm.get('customer_adress').touched">
               Ce champs est obligatoire
             </mat-error>
           </mat-form-field>
 
           <mat-form-field class="form-element">
-            <input formControlName="customer_phoneNumber" matTooltip="Enter User Phone Number" matInput placeholder="Phone Number">
-            <mat-error *ngIf="!customerForm.get('customer_phoneNumber').valid && customerForm.get('customer_phoneNumber').touched">
+            <input formControlName="customer_phoneNumber" matTooltip="Enter User Phone Number" matInput
+              placeholder="Phone Number">
+            <mat-error
+              *ngIf="!customerForm.get('customer_phoneNumber').valid && customerForm.get('customer_phoneNumber').touched">
               Ce champs est obligatoire
             </mat-error>
           </mat-form-field>
@@ -37,35 +40,44 @@
           <mat-form-field class="form-element">
             <input formControlName="customer_email" matTooltip="Enter User Email" matInput placeholder="Email">
             <mat-error *ngIf="!customerForm.get('customer_email').valid && customerForm.get('customer_email').touched">
-                {{ getErrorEmail() }}
+              {{ getErrorEmail() }}
             </mat-error>
           </mat-form-field>
 
           <mat-form-field class="form-element">
-            <input formControlName="customer_directorName" matTooltip="Enter Director Name" matInput placeholder="Director Name">
-            <mat-error *ngIf="!customerForm.get('customer_directorName').valid && customerForm.get('customer_directorName').touched">
+            <input formControlName="customer_directorName" matTooltip="Enter Director Name" matInput
+              placeholder="Director Name">
+            <mat-error
+              *ngIf="!customerForm.get('customer_directorName').valid && customerForm.get('customer_directorName').touched">
               Ce champs est obligatoire
             </mat-error>
           </mat-form-field>
 
           <mat-form-field class="form-element">
-            <input formControlName="customer_departmentName" matTooltip="Enter Department Name" matInput placeholder="Department Name">
-            <mat-error *ngIf="!customerForm.get('customer_dipartmentName').valid && customerForm.get('customer_dipartmentName').touched">
+            <input formControlName="customer_departmentName" matTooltip="Enter Department Name" matInput
+              placeholder="Department Name">
+            <mat-error
+              *ngIf="!customerForm.get('customer_dipartmentName').valid && customerForm.get('customer_dipartmentName').touched">
               Ce champs est obligatoire
             </mat-error>
           </mat-form-field>
 
           <mat-form-field class="form-element">
-            <input formControlName="customer_reductionId" matTooltip="Enter Reduction ID" matInput placeholder="Reduction ID">
-            <mat-error *ngIf="!customerForm.get('customer_reductionId').valid && customerForm.get('customer_reductionId').touched">
+            <input formControlName="customer_reductionId" matTooltip="Enter Reduction ID" matInput
+              placeholder="Reduction ID">
+            <mat-error
+              *ngIf="!customerForm.get('customer_reductionId').valid && customerForm.get('customer_reductionId').touched">
               Ce champs est obligatoire
             </mat-error>
           </mat-form-field>
 
           <mat-card-actions align="center">
-            <button type="submit" mat-raised-button color="accent" matToolTip="Click Submit Button" [disabled]="!customerForm.valid">Submit</button>
+            <button type="submit" mat-raised-button color="accent" matToolTip="Click Submit Button"
+              [disabled]="!customerForm.valid">Submit</button>
+            <button type="reset" mat-raised-button color="accent" matTooltip="Click Reset Button"
+              (click)="resetForm()">Reset</button>
           </mat-card-actions>
-
+          
         </form>
       </mat-card-content>
     </div>

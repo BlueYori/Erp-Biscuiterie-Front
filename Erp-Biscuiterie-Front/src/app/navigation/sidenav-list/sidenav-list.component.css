@@ -1,6 +1,7 @@
 .div-side-entiere{
-    background-color: rgba(216, 216, 210, 0.349)
+    background-color: #424242;
 }
+
 a {
   text-decoration: none;
   color: white;
@@ -8,7 +9,7 @@ a {
 
 a:hover,
 a:active {
-  color: lightgray;
+  color: #868F94;
 }
 
 .nav-caption {

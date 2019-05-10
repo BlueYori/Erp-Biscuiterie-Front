@@ -55,4 +55,11 @@ export class CustomerAddComponent implements OnInit {
       });
   }
 
+
+  resetForm() {
+    this.customerForm.reset();
+    this.customerForm.markAsUntouched();
+  }
+
+
 }

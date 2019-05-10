@@ -14,6 +14,11 @@ a:active {
   margin: 0;
 }
 
+.welcome-title {
+  font-family: 'Shadows Into Light', cursive;
+  font-size : 25px;
+}
+
 mat-toolbar {
   border-radius: 3px;
 }
