@@ -22,7 +22,7 @@ export class CustomerComponent implements OnInit {
   message = null;
 
   // Table
-  public displayedColumns = ['id', 'name', 'address', 'phoneNumber', 'email', 'directorName', 'departmentName', 'reductionId'];
+  public displayedColumns = ['id', 'name', 'address', 'phoneNumber', 'email', 'directorName', 'departmentName', 'reductionId', 'actions'];
   dataSource = new MatTableDataSource<Customer>();
 
   constructor(private formbuilder: FormBuilder, private customerService: CustomerService, private dialog: MatDialog) { }
