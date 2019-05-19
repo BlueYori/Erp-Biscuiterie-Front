@@ -15,15 +15,20 @@ export class UserAddComponent implements OnInit {
 
   dataSaved = false;
   userForm: FormGroup;
-  userIdUpdate;
   message = null;
+  title: String = 'Ajouter un utilisateur';
+  userToUpdate: User;
+  userIdUpdate;
 
   constructor(
     private formbuilder: FormBuilder,
     private userService: UserService,
     private dialogRef: MatDialogRef<UserComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
-
+      if ( data != null && data.userToUpdate != null) {
+        this.userToUpdate = data.userToUpdate;
+        this.userIdUpdate = data.userToUpdate.id;
+      }
     }
 
   ngOnInit() {
@@ -36,6 +41,13 @@ export class UserAddComponent implements OnInit {
       roleId: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
+
+    if (this.userToUpdate != null) {
+      this.title = 'Modifier un utilisateur';
+      this.loadUserToEdit(this.userToUpdate);
+    }
+
+    console.log(this.userIdUpdate);
   }
 
   getErrorEmail() {
@@ -48,46 +60,37 @@ export class UserAddComponent implements OnInit {
     this.dataSaved = false;
     const user = this.userForm.value;
     this.createUser(user);
-    this.userForm.reset();
   }
 
-  loadUserToEdit(userId: number) {
-    this.userService.getUserById(userId).subscribe((user) => {
-
+  loadUserToEdit(user: User) {
       this.message = null;
       this.dataSaved = null;
-      this.userIdUpdate = user.id;
+
       this.userForm.controls['firstname'].setValue(user.firstname);
       this.userForm.controls['lastname'].setValue(user.lastname);
       this.userForm.controls['email'].setValue(user.email);
       this.userForm.controls['password'].setValue(user.password);
       this.userForm.controls['roleId'].setValue(user.roleId);
-
-      console.log(this.userIdUpdate);
-    },
-    error  => {
-    console.log('Error', error);
-    });
   }
 
   createUser(user: User) {
-    if (this.userIdUpdate == null) {
+    if (this.userToUpdate == null) {
       this.userService.createUser(user).subscribe(
         data => {
           this.dataSaved = true;
           this.message = 'L\'utilisateur à bien été ajouté';
-          this.userIdUpdate = null;
-          this.userForm.reset();
+          this.closeForm();
         }
       );
     } else {
+      // On set l'id de l'utilisateur à modifié pour que le service appelle la bonne URL
       user.id = this.userIdUpdate;
+
       this.userService.updateUser(user).subscribe(
         () => {
           this.dataSaved = true;
           this.message = 'L\'utilisateur à bien été modifié';
-          this.userIdUpdate = null;
-          this.userForm.reset();
+          this.closeForm();
         },
         error  => {
           console.log('Error', error);
@@ -96,26 +99,21 @@ export class UserAddComponent implements OnInit {
     }
   }
 
-  deleteUser(userId: number) {
-    if (confirm('Voulez-vous vraiment supprimer cette utilisateur ?')) {
-      this.userService.deleteUser(userId).subscribe(
-        () => {
-          this.dataSaved = true;
-          this.message = 'L\'utilisateur à bien été supprimé';
-          this.userIdUpdate = null;
-          this.userForm.reset();
-        }
-      );
-    }
-  }
-
   resetForm() {
     this.userForm.reset();
     this.userForm.markAsUntouched();
     this.message = null;
+    this.userIdUpdate = null;
     this.dataSaved = false;
+  }
 
-    this.dialogRef.close(this.userForm.value);
+  closeForm() {
+    this.userForm.reset();
+    this.userForm.markAsUntouched();
+    this.dialogRef.close(this.message);
+    this.message = null;
+    this.userIdUpdate = null;
+    this.dataSaved = false;
   }
 
 }
