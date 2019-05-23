@@ -1,0 +1,134 @@
+<!-- <div class="container">
+
+  <div id="manage-product" class="z-depth1">
+
+    <mat-toolbar class="title-form" color="accent">
+      <div align="center" style="text-align: center; width:100%;">
+        <p>AJOUTER UN PRODUIT</p>
+      </div>
+    </mat-toolbar>
+
+    <br><br>
+
+    <mat-card-content align="left">
+      <form [formGroup]="productForm" (ngSubmit)="onFormSubmit(productForm.value)" class="form">
+        <mat-form-field class="form-element">
+          <input formControlName="firstname" matTooltip="Enter product Firstname" matInput placeholder="product Firstname">
+          <mat-error *ngIf="!productForm.get('firstname').valid && productForm.get('firstname').touched">
+            Ce champ est obligatoire
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <input formControlName="lastname" matTooltip="Enter product Lastname" matInput placeholder="product Lastname">
+          <mat-error *ngIf="!productForm.get('lastname').valid && productForm.get('lastname').touched">
+            Ce champ est obligatoire
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <input formControlName="email" matTooltip="Enter Email" matInput placeholder="Email">
+          <mat-error *ngIf="!productForm.get('email').valid && productForm.get('email').touched">
+            {{ getErrorEmail() }}
+          </mat-error>
+        </mat-form-field>
+
+
+        <div class="form-element">
+          <label style="margin-right:5px; vertical-align:middle;">Rôle: </label>
+
+          <mat-radio-group formControlName="floatLabel" matTooltip="Enter Role" formControlName="roleId">
+            <mat-radio-button value="1">Admin</mat-radio-button>
+            <mat-radio-button value="2">Comptable</mat-radio-button>
+          </mat-radio-group>
+          <mat-error *ngIf="!productForm.get('roleId').valid && productForm.get('roleId').touched">
+            Ce champ est obligatoire
+          </mat-error>
+        </div>
+        <mat-form-field class="form-element">
+          <input matTooltip="Enter Password" formControlName="password" matInput placeholder="Password">
+          <mat-error *ngIf="!productForm.get('password').valid && productForm.get('password').touched">
+            Ce champ est obligatoire
+          </mat-error>
+        </mat-form-field>
+
+        <mat-dialog-actions align="center">
+          <button type="submit" mat-raised-button color="accent" matTooltip="Click Submit Button"
+            [disabled]="!productForm.valid">Valider</button>
+          <button type="reset" mat-raised-button color="accent" matTooltip="Click Reset Button"
+            (click)="resetForm()">Fermer</button>
+        </mat-dialog-actions>
+
+        <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">
+          {{message}}
+        </p>
+
+        <br><br>
+
+      </form>
+    </mat-card-content>
+  </div>
+
+</div> -->
+<div class="container">
+
+  <div id="manage-product" class="z-depth1">
+
+    <mat-toolbar class="title-form" color="accent">
+      <div align="center" style="text-align: center; width:100%;">
+        <p>AJOUTER UN PRODUIT</p>
+      </div>
+    </mat-toolbar>
+
+    <br><br>
+
+    <mat-card-content align="left">
+      <form [formGroup]="productForm" (ngSubmit)="onFormSubmit(productForm.value)" class="form">
+        <mat-form-field class="form-element">
+          <input formControlName="name" matTooltip="Enter product name" matInput placeholder="product name">
+          <mat-error *ngIf="!productForm.get('name').valid && productForm.get('name').touched">
+            Ce champ est obligatoire
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <input formControlName="name" matTooltip="Enter product Lastname" matInput placeholder="product name">
+          <mat-error *ngIf="!productForm.get('name').valid && productForm.get('name').touched">
+            Ce champ est obligatoire
+          </mat-error>
+        </mat-form-field>
+
+  
+
+
+        <div class="form-element">
+          <label style="margin-right:5px; vertical-align:middle;">Rôle: </label>
+
+          <mat-radio-group formControlName="floatLabel" matTooltip="Enter Role" formControlName="roleId">
+            <mat-radio-button value="1">Admin</mat-radio-button>
+            <mat-radio-button value="2">Comptable</mat-radio-button>
+          </mat-radio-group>
+          <mat-error *ngIf="!productForm.get('roleId').valid && productForm.get('roleId').touched">
+            Ce champ est obligatoire
+          </mat-error>
+        </div>
+   
+
+        <mat-dialog-actions align="center">
+          <button type="submit" mat-raised-button color="accent" matTooltip="Click Submit Button"
+            [disabled]="!productForm.valid">Valider</button>
+          <button type="reset" mat-raised-button color="accent" matTooltip="Click Reset Button"
+            (click)="resetForm()">Fermer</button>
+        </mat-dialog-actions>
+
+        <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">
+          {{message}}
+        </p>
+
+        <br><br>
+
+      </form>
+    </mat-card-content>
+  </div>
+
+</div>

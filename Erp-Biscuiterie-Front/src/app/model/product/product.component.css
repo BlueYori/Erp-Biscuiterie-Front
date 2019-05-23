@@ -1,0 +1,59 @@
+  #manage-product {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  #show-product {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 3em;
+  }
+
+  #show-product table,
+  #show-product mat-form-field {
+    width: 100%;
+  }
+
+  #show-product table th:last-child {
+    width: 180px;
+  }
+
+  #show-product table .btn-edit {
+    margin-right: 15px;
+  }
+
+  .fill-remaining-space {
+    /* This fills the remaining space, by using flexbox.
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+  }
+
+  .container {
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .z-depth1 {
+    /* border: 1px solid rgba(0,0,0,.03); */
+    box-shadow: 0 2px 2px rgba(0, 0, 0, .24), 0 0 2px rgba(0, 0, 0, .12);
+    /* margin: 4px; */
+  }
+
+  .form {
+    padding: 0 15px;
+  }
+
+  .form-element {
+    padding: 5px 5px 25px 2px;
+    width: 100%;
+  }
+
+  .form-element .mat-radio-button {
+    margin-right: 10px !important;
+  }
+  .th{
+      padding-right: 20px;
+      }

@@ -1,3 +1,78 @@
-<p>
-  product works!
-</p>
+<div class="container">
+  <div class="button-row">
+    <a mat-flat-button color="primary" (click)="openDialog()">
+      <mat-icon>add</mat-icon>
+    </a>
+  </div>
+  <div id="show-products">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Recherche...">
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let product"> {{product.id}} </td>
+      </ng-container>
+
+      <!-- Nom du produit -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Produit    </th>
+        <td mat-cell *matCellDef="let product"> {{product.name}} </td>
+      </ng-container>
+
+      <!-- price -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Prix </th>
+        <td mat-cell *matCellDef="let product"> {{product.price}} </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let product">
+          <div class="btn-toolbar">
+            <button mat-mini-fab color="primary" class="btn-edit" matTooltip="Editer un product"
+              (click)="loadProductToEdit(product.id)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-mini-fab color="warn" matTooltip="Supprimer un product" (click)="deleteProduct(product.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <!-- <table class="table" >
+          <tr ngclass="btn-primary">
+            <th class="tbl2">Id</th>
+            <th class="tbl2">Firstname</th>
+            <th class="tbl2">Lastname</th>
+            <th class="tbl2">Email</th>
+            <th class="tbl2">Role</th>
+            <th class="tbl2">Edit</th>
+            <th class="tbl2">Delete</th>
+          </tr>
+          <tr *ngFor="let product of allproducts | async">
+            <td class="tbl2">{{product.id}}</td>
+            <td class="tbl2">{{product.firstname}}</td>
+            <td class="tbl2">{{product.lastname}}</td>
+            <td class="tbl2">{{product.email}}</td>
+            <td class="tbl2">{{product.roleId == 1 ? 'Administrateur' : 'Comptable'}}</td>
+            <td class="tbl2">
+              <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadproductToEdit(product.id)">Edit</button>
+            </td>
+            <td class="tbl2">
+              <button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deleteproduct(product.id)">Delete</button>
+            </td>
+          </tr>
+
+        </table>  -->
+  </div>
+</div>

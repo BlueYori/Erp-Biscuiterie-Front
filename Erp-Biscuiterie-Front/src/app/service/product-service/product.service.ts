@@ -2,63 +2,64 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { User } from './user';
+import { Product } from './product';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class ProductService {
 
-  url = 'https://localhost:44386/api/user/';
+  url = 'https://localhost:44386/api/product/';
 
   constructor(private http: HttpClient) { }
 
-  getAllUser(): Observable<User[]> {
-    return this.http.get<User[]>(this.url);
+  getAllProduct(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.url);
   }
 
-  getUserById(userId: number): Observable<User> {
+  getProductById(productId: number): Observable<Product> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
-    return this.http.get<User>(this.url + userId.toString(), httpOptions)
+    return this.http.get<Product>(this.url + productId.toString(), httpOptions)
     .pipe(
-      tap(_ => console.log(`fetched user id=${userId}`)),
-      catchError(this.handleError<User>(`getUser id=${userId}`))
+      tap(_ => console.log(`fetched  product id=${productId}`)),
+      catchError(this.handleError<Product>(`getProduct id=${productId}`))
     );
   }
 
-  createUser(user: User): Observable<User> {
+  createProduct(product: Product): Observable<Product> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
-    return this.http.post<User>(this.url, user, httpOptions);
+    return this.http.post<Product>(this.url, product, httpOptions);
   }
 
-  updateUser(user: User): Observable<User> {
+  updateProduct(product: Product): Observable<Product> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
 
-    const userId = user.id;
+    const productId = product.id;
 
-    return this.http.put<User>(this.url + userId.toString(), user, httpOptions);
+    return this.http.put<Product>(this.url + productId.toString(), product, httpOptions);
   }
 
-  deleteUser(userId: number): Observable<number> {
+  deleteProduct(productId: number): Observable<number> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
 
-    return this.http.delete<number>(this.url + userId.toString(), httpOptions);
+    return this.http.delete<number>(this.url + productId.toString(), httpOptions);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

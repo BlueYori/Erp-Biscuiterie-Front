@@ -36,6 +36,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductAddComponent } from './view/product-add/product-add.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { HttpClientModule } from '@angular/common/http';
     LayoutComponent,
     HeaderComponent,
     SidenavListComponent,
-    routingComponents
+    routingComponents,
+    ProductAddComponent
   ],
   imports: [
     AppRoutingModule,
