@@ -5,22 +5,26 @@
     margin: 0 auto;
   }
 
-  #show-product {
+  #status {
+    margin: 2em 0 -1em;
+  }
+
+  #show-products {
     width: 100%;
     margin: 0 auto;
-    margin-top: 3em;
+    margin-top: 2em;
   }
 
-  #show-product table,
-  #show-product mat-form-field {
+  #show-products table,
+  #show-products mat-form-field {
     width: 100%;
   }
 
-  #show-product table th:last-child {
+  #show-products table th:last-child {
     width: 180px;
   }
 
-  #show-product table .btn-edit {
+  #show-products table .btn-edit {
     margin-right: 15px;
   }
 
