@@ -20,6 +20,7 @@ import { CustomerComponent } from './model/customer/customer.component';
 // VIEWS COMPONENTS
 import { CustomerAddComponent } from './view/customer-add/customer-add.component';
 import { UserAddComponent } from './view/user-add/user-add.component';
+import { ProductAddComponent } from './view/product-add/product-add.component';
 
 const routes: Routes = [
   {
@@ -91,6 +92,10 @@ const routes: Routes = [
     path: 'user-add',
     component: UserAddComponent,
   },
+  {
+    path: 'product-add',
+    component: ProductAddComponent,
+  }
 ];
 
 @NgModule({
@@ -114,5 +119,6 @@ export const routingComponents = [
   UserComponent,
   LoginFormComponent,
   CustomerAddComponent,
-  UserAddComponent
+  UserAddComponent,
+  ProductAddComponent
 ];

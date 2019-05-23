@@ -79,7 +79,6 @@ export class ProductComponent implements OnInit {
       this.productIdUpdate = product.id;
       this.productForm.controls['name'].setValue(product.name);
       this.productForm.controls['price'].setValue(product.price );
- 
 
       console.log(this.productIdUpdate);
     },
