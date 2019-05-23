@@ -15,37 +15,50 @@ export class ProductAddComponent implements OnInit {
 
   dataSaved = false;
   productForm: FormGroup;
+  productToUpdate: Product;
   productIdUpdate;
   message = null;
+  title: String = 'Ajouter un produit';
 
   constructor(
     private formbuilder: FormBuilder,
     private productService: ProductService,
     private dialogRef: MatDialogRef<ProductComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
-
+      if ( data != null && data.userToUpdate != null) {
+        this.productToUpdate = data.productToUpdate;
+        this.productIdUpdate = data.productToUpdate.id;
+      }
   }
 
   ngOnInit() {
     // tslint:disable-next-line:max-line-length
+    const priceRegex: RegExp = /^[0-9]*\.?[0-9]*$/;
     this.productForm = this.formbuilder.group({
-      id: ['', [Validators.required]],
       name: ['', [Validators.required]],
-      price: ['', [Validators.required]]
+      price: ['', [Validators.required, Validators.pattern(priceRegex)]]
     });
+
+    if (this.productToUpdate != null) {
+      this.title = 'Modifier un produit';
+      this.loadProductToEdit(this.productToUpdate);
+    }
+
+    console.log(this.productToUpdate);
   }
 
+  getErrorPrice() {
+    return this.productForm.get('price').hasError('required') ? 'Ce champ est requis' :
+      this.productForm.get('price').hasError('pattern') ? 'Seulement les chiffres et les "." sont autorisés' : '';
+  }
 
   onFormSubmit() {
     this.dataSaved = false;
     const product = this.productForm.value;
     this.createProduct(product);
-    this.productForm.reset();
   }
 
-  loadProductToEdit(productId: number) {
-    this.productService.getProductById(productId).subscribe((product) => {
-
+  loadProductToEdit(product: Product) {
       this.message = null;
       this.dataSaved = null;
       this.productIdUpdate = product.id;
@@ -53,48 +66,29 @@ export class ProductAddComponent implements OnInit {
       this.productForm.controls['name'].setValue(product.name);
       this.productForm.controls['price'].setValue(product.price);
 
-
-      console.log(this.productIdUpdate);
-    },
-      error => {
-        console.log('Error', error);
-      });
+      console.log(product);
   }
 
   createProduct(product: Product) {
-    if (this.productIdUpdate == null) {
+    if (this.productToUpdate == null) {
       this.productService.createProduct(product).subscribe(
         data => {
           this.dataSaved = true;
           this.message = 'Le produit a bien été ajouté';
-          this.productIdUpdate = null;
-          this.productForm.reset();
+          this.closeForm();
         }
       );
     } else {
       product.id = this.productIdUpdate;
+
       this.productService.updateProduct(product).subscribe(
         () => {
           this.dataSaved = true;
           this.message = 'Le produit à bien été modifié';
-          this.productIdUpdate = null;
-          this.productForm.reset();
+          this.closeForm();
         },
         error => {
           console.log('Error', error);
-        }
-      );
-    }
-  }
-
-  deleteProduct(productId: number) {
-    if (confirm('Voulez-vous vraiment supprimer ce produit ?')) {
-      this.productService.deleteProduct(productId).subscribe(
-        () => {
-          this.dataSaved = true;
-          this.message = 'Le produit a bien été supprimé';
-          this.productIdUpdate = null;
-          this.productForm.reset();
         }
       );
     }
@@ -105,8 +99,16 @@ export class ProductAddComponent implements OnInit {
     this.productForm.markAsUntouched();
     this.message = null;
     this.dataSaved = false;
+    this.productIdUpdate = null;
+  }
 
-    this.dialogRef.close(this.productForm.value);
+  closeForm() {
+    this.productForm.reset();
+    this.productForm.markAsUntouched();
+    this.dialogRef.close(this.message);
+    this.message = null;
+    this.productIdUpdate = null;
+    this.dataSaved = false;
   }
 
 }
