@@ -15,39 +15,41 @@ import { ProductAddComponent } from 'src/app/view/product-add/product-add.compon
 export class ProductComponent implements OnInit {
 
   dataSaved = false;
-  productForm: FormGroup;
-  allProducts: Observable<Product[]>;
-  productIdUpdate;
   message = null;
 
   // Table
-  public displayedColumns = [ 'name', 'price'];
+  public displayedColumns = [ 'name', 'price', 'actions'];
   dataSource = new MatTableDataSource<Product>();
 
   constructor(private formbuilder: FormBuilder, private productService: ProductService, private dialog: MatDialog) { }
 
   ngOnInit() {
-    // tslint:disable-next-line:max-line-length
-    this.productForm = this.formbuilder.group({
-      id: ['', [Validators.required]],
-      name: ['', [Validators.required]],
-      price: ['', [Validators.required]],
-
-    });
     this.loadAllProducts();
   }
 
-  openDialog() {
+  openDialog(product: Product = null) {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
 
+    // Si user non null, alors on update cet user -> On passe l'user a UserAddComponent
+    if (product != null) {
+      console.log(product);
+      dialogConfig.data = {
+        productToUpdate: product
+      };
+    }
+
     const dialogRef = this.dialog.open(ProductAddComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(
-      () => {
+      (data) => {
         this.loadAllProducts();
+
+        if (data != null) {
+          this.message = data;
+        }
       }
     );
   }
@@ -55,7 +57,7 @@ export class ProductComponent implements OnInit {
 
   loadAllProducts() {
     // Double appel dégueu, a revoir
-    this.allProducts = this.productService.getAllProduct();
+    // this.allProducts = this.productService.getAllProduct();
     this.productService.getAllProduct().subscribe(
       products => {
         this.dataSource.data = products as Product[];
@@ -64,55 +66,11 @@ export class ProductComponent implements OnInit {
     );
   }
 
-  onFormSubmit() {
-    this.dataSaved = false;
-    const product = this.productForm.value;
-    this.createProduct(product);
-    this.productForm.reset();
-  }
+  loadProductToEdit(product: Product) {
+    this.message = null;
+    this.dataSaved = null;
 
-  loadProductToEdit(productId: number) {
-    this.productService.getProductById(productId).subscribe((product) => {
-
-      this.message = null;
-      this.dataSaved = null;
-      this.productIdUpdate = product.id;
-      this.productForm.controls['name'].setValue(product.name);
-      this.productForm.controls['price'].setValue(product.price );
-
-      console.log(this.productIdUpdate);
-    },
-      error => {
-        console.log('Error', error);
-      });
-  }
-
-  createProduct(product: Product) {
-    if (this.productIdUpdate == null) {
-      this.productService.createProduct(product).subscribe(
-        data => {
-          this.dataSaved = true;
-          this.message = 'Le product à bien été ajouté';
-          this.loadAllProducts();
-          this.productIdUpdate = null;
-          this.productForm.reset();
-        }
-      );
-    } else {
-      product.id = this.productIdUpdate;
-      this.productService.updateProduct(product).subscribe(
-        () => {
-          this.dataSaved = true;
-          this.message = 'Le product à bien été modifié';
-          this.loadAllProducts();
-          this.productIdUpdate = null;
-          this.productForm.reset();
-        },
-        error => {
-          console.log('Error', error);
-        }
-      );
-    }
+    this.openDialog(product);
   }
 
   deleteProduct(productId: number) {
@@ -122,18 +80,9 @@ export class ProductComponent implements OnInit {
           this.dataSaved = true;
           this.message = 'Le product à bien été supprimé';
           this.loadAllProducts();
-          this.productIdUpdate = null;
-          this.productForm.reset();
         }
       );
     }
-  }
-
-  resetForm() {
-    this.productForm.reset();
-    this.productForm.markAsUntouched();
-    this.message = null;
-    this.dataSaved = false;
   }
 
 }
