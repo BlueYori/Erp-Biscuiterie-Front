@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { ProductAddComponent } from 'src/app/view/product-add/product-add.component';
 
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',

@@ -22,6 +22,7 @@ import {
   MatToolbarModule,
   MatCardModule,
   MatDialogModule,
+  MatGridListModule,
   MatTableModule,
   MatProgressSpinnerModule,
   MatMenuModule,
@@ -29,7 +30,8 @@ import {
   MatListModule,
   MatTabsModule,
   MatSortModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatGridList,
 } from '@angular/material';
 
 import { LayoutComponent } from './layout/layout.component';
@@ -64,6 +66,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     MatInputModule,
     MatDialogModule,
+    MatGridListModule,
     MatTableModule,
     MatMenuModule,
     MatIconModule,

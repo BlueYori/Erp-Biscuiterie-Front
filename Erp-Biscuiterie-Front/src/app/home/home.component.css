@@ -6,6 +6,17 @@ mat-sidenav {
     width: 250px;
 }
 
+/* Structure */
+table {
+    width: 100%;
+}
+  
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+  
+
 main {
     padding: 10px;
 }
