@@ -11,18 +11,18 @@ export class SidenavListComponent implements OnInit {
   @Output() sidenavClose = new EventEmitter();
 
   public entitiesLink: any[] = [
-    { entity: 'Customer', link: 'customer' },
-    { entity: 'Ingredient', link : 'ingredient' },
-    { entity: 'Ingredient Disponibility', link : 'ingredientDisponibility' },
-    { entity: 'Order', link : 'order' },
-    { entity: 'Order Details', link : 'orderDetails' },
-    { entity: 'Product', link : 'product' },
-    { entity: 'Recipe', link : 'recipe' },
-    { entity: 'Reduction', link : 'reduction' },
-    { entity: 'Role', link : 'role' },
-    { entity: 'State', link : 'state' },
-    { entity: 'Type Ingredient', link : 'typeIngredient' },
-    { entity: 'User', link : 'user' }
+    { entity: 'Clients', link: 'customer', icon: 'people' },
+    { entity: 'Ingredients', link : 'ingredient',icon: 'texture' },
+    { entity: 'Disponibilité des ingrédients', link : 'ingredientDisponibility',icon: 'texture' },
+    { entity: 'Commandes', link : 'order', icon: 'assignment' },
+    { entity: 'Détails des commandes', link : 'orderDetails',icon: 'texture' },
+    { entity: 'Produits', link : 'product', icon:'local_pizza' },
+    { entity: 'Recettes', link : 'recipe', icon:'library_books' },
+    { entity: 'Réductions', link : 'reduction', icon:'local_atm' },
+    { entity: 'Rôle', link : 'role',icon: 'texture' },
+    { entity: 'Etat', link : 'state',icon: 'texture' },
+    { entity: 'Type d\'ingrédient', link : 'typeIngredient',icon: 'texture' },
+    { entity: 'Utilisateur', link : 'user', icon: 'person' }
   ];
 
   constructor(private httpClient: HttpClient) {}
