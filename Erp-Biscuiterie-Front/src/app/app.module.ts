@@ -29,7 +29,8 @@ import {
   MatListModule,
   MatTabsModule,
   MatSortModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatGridListModule
 } from '@angular/material';
 
 import { LayoutComponent } from './layout/layout.component';
@@ -83,7 +84,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatGridListModule
   ],
   exports: [
     CommonModule,
