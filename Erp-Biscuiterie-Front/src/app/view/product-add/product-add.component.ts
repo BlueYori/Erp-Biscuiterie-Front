@@ -25,9 +25,7 @@ export class ProductAddComponent implements OnInit {
     private productService: ProductService,
     private dialogRef: MatDialogRef<ProductComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
-      console.log(data);
       if ( data != null && data.productToUpdate != null) {
-        console.log(data);
         this.productToUpdate = data.productToUpdate;
         this.productIdUpdate = data.productToUpdate.id;
       }
@@ -46,7 +44,6 @@ export class ProductAddComponent implements OnInit {
       this.loadProductToEdit(this.productToUpdate);
     }
 
-    console.log(this.productToUpdate);
   }
 
   getErrorPrice() {
@@ -66,8 +63,6 @@ export class ProductAddComponent implements OnInit {
       this.productIdUpdate = product.id;
       this.productForm.controls['name'].setValue(product.name);
       this.productForm.controls['price'].setValue(product.price);
-
-      console.log(product);
   }
 
   createProduct(product: Product) {

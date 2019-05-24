@@ -33,9 +33,8 @@ export class ProductComponent implements OnInit {
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
 
-    // Si user non null, alors on update cet user -> On passe l'user a UserAddComponent
+    // Si product non null, alors on update cet product -> On passe l'product a ProductAddComponent
     if (product != null) {
-      console.log(product);
       dialogConfig.data = {
         productToUpdate: product
       };
@@ -61,7 +60,6 @@ export class ProductComponent implements OnInit {
     this.productService.getAllProduct().subscribe(
       products => {
         this.dataSource.data = products as Product[];
-        console.log(products);
       }
     );
   }
