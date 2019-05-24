@@ -7,7 +7,7 @@
   <br><hr><br>
   <mat-nav-list *ngFor="let e of entitiesLink">
     <a mat-list-item routerLink='/{{e.link}}' (click)="onSidenavClose()">
-      <mat-icon>book</mat-icon><span class="nav-caption">{{e.entity}}</span>
+      <mat-icon>{{e.icon}}</mat-icon><span class="nav-caption">{{e.entity}}</span>
     </a>
   </mat-nav-list>
 </div>

@@ -1,3 +1,7 @@
+#status {
+  margin: 2em 0 -1em;
+}
+
 #manage-user {
   min-width: 150px;
   max-width: 500px;
