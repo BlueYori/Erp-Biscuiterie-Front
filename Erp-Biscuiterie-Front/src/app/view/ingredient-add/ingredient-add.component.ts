@@ -34,10 +34,10 @@ export class IngredientAddComponent implements OnInit {
 
   ngOnInit() {
     // tslint:disable-next-line:max-line-length
-    const emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const priceRegex: RegExp = /^[0-9]*\.?[0-9]*$/;
     this.ingredientForm = this.formbuilder.group({
       name: ['', [Validators.required]],
-      price: ['', [Validators.required]],
+      price: ['', [Validators.required, Validators.pattern(priceRegex)]],
       typeIngredientId: ['', [Validators.required]],
     });
 
@@ -45,6 +45,11 @@ export class IngredientAddComponent implements OnInit {
       this.title = 'Modifier un ingrédient';
       this.loadIngredientToEdit(this.ingredientToUpdate);
     }
+  }
+
+  getErrorPrice() {
+    return this.ingredientForm.get('price').hasError('required') ? 'Ce champ est requis' :
+      this.ingredientForm.get('price').hasError('pattern') ? 'Seulement les chiffres et les "." sont autorisés' : '';
   }
 
   onFormSubmit() {

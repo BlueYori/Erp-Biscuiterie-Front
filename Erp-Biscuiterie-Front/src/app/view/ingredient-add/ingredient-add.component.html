@@ -23,7 +23,7 @@
           <input formControlName="price" matTooltip="Enter Ingredient Price" matInput
             placeholder="Prix de l'ingrédient">
           <mat-error *ngIf="!ingredientForm.get('price').valid && ingredientForm.get('price').touched">
-            Ce champ est obligatoire
+            {{ getErrorPrice() }}
           </mat-error>
         </mat-form-field>
 
