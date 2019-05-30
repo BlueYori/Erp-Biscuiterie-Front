@@ -4,11 +4,12 @@ import { AppComponent } from './app.component';
 import { CustomMaterialModule } from './core/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LayoutModule } from '@angular/cdk/layout';
+import { ConnexionService } from './service/connexion/connexion.service';
 import {
   MatButtonModule,
   MatCheckboxModule,
@@ -36,7 +37,6 @@ import {
 import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -102,6 +102,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatSidenavModule
   ],
   providers: [
+    ConnexionService,
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
   ],
   bootstrap: [AppComponent]
