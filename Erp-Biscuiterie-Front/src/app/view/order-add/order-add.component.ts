@@ -10,8 +10,9 @@ import { ProductService } from 'src/app/service/product-service/product.service'
   styleUrls: ['./order-add.component.css']
 })
 export class OrderAddComponent implements OnInit {
-  
-  public displayedColumns = [ 'name', 'price', 'actions'];
+
+  public leftDisplayedColumns = [ 'name', 'price', 'actions'];
+  public rightDisplayedColumns = [ 'name', 'price', 'quantity', 'actions'];
   leftDataSource = new MatTableDataSource<Product>();
   rightDataSource = new MatTableDataSource<Product>();
 
