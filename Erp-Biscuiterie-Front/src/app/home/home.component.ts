@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { FormBuilder, Validators, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Product } from 'src/app/service/product-service/product';
 import { ProductService } from 'src/app/service/product-service/product.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class HomeComponent implements OnInit {
   public displayedColumns = [ 'id', 'name', 'price'];
   dataSource = new MatTableDataSource<Product>();
 
-  constructor(private formbuilder: FormBuilder, private productService: ProductService) { }
+  constructor(private formbuilder: FormBuilder, private productService: ProductService, private router: Router) { }
 
   ngOnInit() {
      this.productForm = this.formbuilder.group({
@@ -45,5 +46,9 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+
+ goToPage(pageName: string) {
+   this.router.navigate(['/product'])
+ }
 
 }
