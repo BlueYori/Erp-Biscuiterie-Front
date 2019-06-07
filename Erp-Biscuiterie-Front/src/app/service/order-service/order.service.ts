@@ -2,64 +2,63 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Product } from './product';
-
+import { Order } from './order';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class OrderService {
 
-  url = 'https://localhost:44386/api/product/';
+  url = 'https://localhost:44386/api/order/';
 
   constructor(private http: HttpClient) { }
 
-  getAllProduct(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.url);
+  getAllOrders(): Observable<Order[]> {
+    return this.http.get<Order[]>(this.url);
   }
 
-  getProductById(productId: number): Observable<Product> {
+  getOrderById(orderId: number): Observable<Order> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
-    return this.http.get<Product>(this.url + productId.toString(), httpOptions)
+    return this.http.get<Order>(this.url + orderId.toString(), httpOptions)
     .pipe(
-      tap(_ => console.log(`fetched  product id=${productId}`)),
-      catchError(this.handleError<Product>(`getProduct id=${productId}`))
+      tap(_ => console.log(`fetched order id=${orderId}`)),
+      catchError(this.handleError<Order>(`getOrder id=${orderId}`))
     );
   }
 
-  createProduct(product: Product): Observable<Product> {
+  createOrder(order: Order): Observable<Order> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
-    return this.http.post<Product>(this.url, product, httpOptions);
+    return this.http.post<Order>(this.url, order, httpOptions);
   }
 
-  updateProduct(product: Product): Observable<Product> {
+  updateOrder(order: Order): Observable<Order> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
 
-    const productId = product.id;
+    const orderId = order.id;
 
-    return this.http.put<Product>(this.url + productId.toString(), product, httpOptions);
+    return this.http.put<Order>(this.url + orderId.toString(), order, httpOptions);
   }
 
-  deleteProduct(productId: number): Observable<number> {
+  deleteOrder(orderId: number): Observable<number> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
 
-    return this.http.delete<number>(this.url + productId.toString(), httpOptions);
+    return this.http.delete<number>(this.url + orderId.toString(), httpOptions);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

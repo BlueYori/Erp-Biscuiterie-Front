@@ -1,0 +1,88 @@
+<mat-grid-list cols="2" [gutterSize]="'10px'">
+
+  <mat-grid-tile [colspan]="1" [rowspan]="2">
+    <div id="products">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Recherche...">
+      </mat-form-field>
+
+      <table mat-table [dataSource]="leftDataSource" class="mat-elevation-z8">
+
+        <!-- Nom Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Nom </th>
+          <td mat-cell *matCellDef="let product"> {{product.name}} </td>
+        </ng-container>
+
+        <!-- Prix Column -->
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> Prix </th>
+          <td mat-cell *matCellDef="let product"> {{product.price}} </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let product; let i = index;">
+            <div class="btn-toolbar">
+              <button mat-mini-fab color="warn" matTooltip="Ajouter le(s) produit(s)" (click)="addProductToDataSource(product, i)">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="leftDisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: leftDisplayedColumns;"></tr>
+      </table>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="1" [rowspan]="2">
+    <div id="command">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Recherche...">
+      </mat-form-field>
+
+      <table mat-table [dataSource]="rightDataSource" class="mat-elevation-z8">
+
+        <!-- Nom Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Nom </th>
+          <td mat-cell *matCellDef="let rightProduct"> {{rightProduct.name}} </td>
+        </ng-container>
+
+        <!-- Prix Column -->
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> Prix </th>
+          <td mat-cell *matCellDef="let rightProduct"> {{rightProduct.price}} </td>
+        </ng-container>
+
+        <!-- Quantité -->
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef> Quantité </th>
+          <td mat-cell *matCellDef="let rightProduct">
+            <input matInput placeholder="Quantité">
+          </td>
+        </ng-container>
+        
+        <!-- Prix Total -->
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let rightProduct; let i = index;">
+            <div class="btn-toolbar">
+              <button mat-mini-fab color="warn" matTooltip="Supprimer le(s) produit(s)" (click)="cancelProduct(rightProduct, i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="rightDisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: rightDisplayedColumns;"></tr>
+      </table>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

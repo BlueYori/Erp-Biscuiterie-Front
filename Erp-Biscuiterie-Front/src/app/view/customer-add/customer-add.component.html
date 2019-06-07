@@ -65,7 +65,7 @@
           <button type="submit" mat-raised-button color="accent" matTooltip="Click Submit Button"
             [disabled]="!customerForm.valid">Valider</button>
           <button type="reset" mat-raised-button color="accent" matTooltip="Click Reset Button"
-            (click)="resetForm()">Fermer</button>
+            (click)="closeForm()">Fermer</button>
         </mat-dialog-actions>
 
         <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">

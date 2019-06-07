@@ -17,3 +17,12 @@ a:active {
   padding-left: 6px;
 }
 
+#logo {
+  width: 105%;
+  margin: 80px -5px 0px -5px;
+}
+
+hr {
+  border: 3px solid #c0392b;
+  margin-top: 45px;
+}

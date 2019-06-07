@@ -1,33 +1,4 @@
-#status {
-    margin: 2em 0 -1em;
-  }
-  
-  #manage-order {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-    margin: 0 auto;
-  }
-  
-  #show-orders {
-    width: 100%;
-    margin: 0 auto;
-    margin-top: 3em;
-  }
-  
-  #show-orders table, #show-users mat-form-field {
-    width: 100%; 
-  }
-  
-  #show-orders table th:last-child {
-    width: 180px;
-  }
-  
-  #show-orders table .btn-edit {
-    margin-right: 10px;
-  }
-  
-  .fill-remaining-space {
+.fill-remaining-space {
     /* This fills the remaining space, by using flexbox.
        Every toolbar row uses a flexbox row layout. */
     flex: 1 1 auto;
@@ -35,8 +6,13 @@
   
   .container {
     padding: 10px;
-    align-items: center;
-    justify-content: center;
+  }
+  
+  #manage-ingredient {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
   }
   
   .z-depth1 {

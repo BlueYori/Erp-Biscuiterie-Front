@@ -22,7 +22,6 @@ import {
   MatToolbarModule,
   MatCardModule,
   MatDialogModule,
-  MatGridListModule,
   MatTableModule,
   MatProgressSpinnerModule,
   MatMenuModule,
@@ -31,7 +30,7 @@ import {
   MatTabsModule,
   MatSortModule,
   MatPaginatorModule,
-  MatGridList,
+  MatGridListModule
 } from '@angular/material';
 
 import { LayoutComponent } from './layout/layout.component';
@@ -86,7 +85,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatGridListModule
   ],
   exports: [
     CommonModule,

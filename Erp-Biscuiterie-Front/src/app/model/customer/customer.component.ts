@@ -16,9 +16,6 @@ import { CustomerAddComponent } from './../../view/customer-add/customer-add.com
 export class CustomerComponent implements OnInit {
 
   dataSaved = false;
-  customerForm: FormGroup;
-  allCustomers: Observable<Customer[]>;
-  customerIsUpdate;
   message = null;
 
   // Table
@@ -28,106 +25,47 @@ export class CustomerComponent implements OnInit {
   constructor(private formbuilder: FormBuilder, private customerService: CustomerService, private dialog: MatDialog) { }
 
   ngOnInit() {
-    // tslint:disable-next-line:max-line-length
-    const emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    this.customerForm = this.formbuilder.group({
-      name: ['', [Validators.required]],
-      address: ['', [Validators.required]],
-      phoneNumber: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.pattern(emailregex)]],
-      directorName: ['', [Validators.required]],
-      departmentName: ['', [Validators.required]],
-      reductionId: ['', [Validators.required]]
-    });
     this.loadAllCustomers();
   }
 
-  openDialog() {
+  openDialog(customer: Customer = null) {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
 
+    if (customer != null) {
+      dialogConfig.data = {
+        customerToUpdate: customer
+      };
+    }
+
     const dialogRef = this.dialog.open(CustomerAddComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(
-      () => {
+      (data) => {
         this.loadAllCustomers();
+
+        if (data != null) {
+          this.message = data;
+        }
       }
     );
-  }
-
-  getErrorEmail() {
-    return this.customerForm.get('email').hasError('required') ? 'Ce champ est requis' :
-      this.customerForm.get('email').hasError('pattern') ? 'Adresse email non valide' :
-        this.customerForm.get('email').hasError('alreadyInUse') ? 'This emailaddress is already in use' : '';
   }
 
   loadAllCustomers() {
     // Double appel dégueu, a revoir
-    this.allCustomers = this.customerService.getAllCustomers();
     this.customerService.getAllCustomers().subscribe(
       customers => {
         this.dataSource.data = customers as Customer[];
-        console.log (customers);
       }
     );
   }
 
-  onFormSubmit() {
-    this.dataSaved = false;
-    const customer = this.customerForm.value;
-    this.createCustomer(customer);
-    this.customerForm.reset();
-  }
-
-  loadCustomerToEdit(customerId: number) {
-    this.customerService.getCustomerById(customerId).subscribe((customer) => {
-
+  loadCustomerToEdit(customer: Customer) {
       this.message = null;
       this.dataSaved = null;
-      this.customerIsUpdate = customer.id;
-      this.customerForm.controls['name'].setValue(customer.name);
-      this.customerForm.controls['address'].setValue(customer.address);
-      this.customerForm.controls['phoneNumber'].setValue(customer.phoneNumber);
-      this.customerForm.controls['email'].setValue(customer.email);
-      this.customerForm.controls['directorName'].setValue(customer.directorName);
-      this.customerForm.controls['departmentName'].setValue(customer.departmentName);
-      this.customerForm.controls['reductionId'].setValue(customer.reductionId);
-
-      console.log(this.customerIsUpdate);
-    },
-    error  => {
-    console.log('Error', error);
-    });
-  }
-
-  createCustomer(customer: Customer) {
-    if (this.customerIsUpdate == null) {
-      this.customerService.createCustomer(customer).subscribe(
-        data => {
-          this.dataSaved = true;
-          this.message = 'L\'utilisateur à bien été ajouté';
-          this.loadAllCustomers();
-          this.customerIsUpdate = null;
-          this.customerForm.reset();
-        }
-      );
-    } else {
-      customer.id = this.customerIsUpdate;
-      this.customerService.updateCustomer(customer).subscribe(
-        () => {
-          this.dataSaved = true;
-          this.message = 'L\'utilisateur à bien été modifié';
-          this.loadAllCustomers();
-          this.customerIsUpdate = null;
-          this.customerForm.reset();
-        },
-        error  => {
-          console.log('Error', error);
-          }
-      );
-    }
+      this.openDialog(customer);
   }
 
   deleteCustomer(customerId: number) {
@@ -137,18 +75,8 @@ export class CustomerComponent implements OnInit {
           this.dataSaved = true;
           this.message = 'L\'utilisateur à bien été supprimé';
           this.loadAllCustomers();
-          this.customerIsUpdate = null;
-          this.customerForm.reset();
         }
       );
     }
   }
-
-  resetForm() {
-    this.customerForm.reset();
-    this.customerForm.markAsUntouched();
-    this.message = null;
-    this.dataSaved = false;
-  }
-
 }

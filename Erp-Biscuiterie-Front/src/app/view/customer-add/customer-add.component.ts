@@ -15,15 +15,20 @@ export class CustomerAddComponent implements OnInit {
 
   dataSaved = false;
   customerForm: FormGroup;
-  customerIsUpdate;
   message = null;
+  title: String = 'Ajouter un client';
+  customerToUpdate: Customer;
+  customerIdUpdate;
 
   constructor(
     private formbuilder: FormBuilder,
     private customerService: CustomerService,
     private dialogRef: MatDialogRef<CustomerComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
-
+      if (data != null && data.customerToUpdate != null) {
+        this.customerToUpdate = data.customerToUpdate;
+        this.customerIdUpdate = data.customerToUpdate.id;
+      }
     }
 
   ngOnInit() {
@@ -38,6 +43,11 @@ export class CustomerAddComponent implements OnInit {
       directorName: ['', [Validators.required]],
       reductionId: ['', [Validators.required]]
     });
+
+    if (this.customerToUpdate != null) {
+      this.title = 'Modifier un client';
+      this.loadCustomerToEdit(this.customerToUpdate);
+    }
   }
 
   getErrorEmail() {
@@ -50,47 +60,37 @@ export class CustomerAddComponent implements OnInit {
     this.dataSaved = false;
     const customer = this.customerForm.value;
     this.createCustomer(customer);
-    this.customerForm.reset();
   }
 
-  loadCustomerToEdit(customerId: number) {
-    this.customerService.getCustomerById(customerId).subscribe((customer) => {
-
+  loadCustomerToEdit(customer: Customer) {
       this.message = null;
       this.dataSaved = null;
-      this.customerIsUpdate = customer.id;
+
       this.customerForm.controls['name'].setValue(customer.name);
       this.customerForm.controls['address'].setValue(customer.address);
       this.customerForm.controls['email'].setValue(customer.email);
       this.customerForm.controls['directorName'].setValue(customer.directorName);
       this.customerForm.controls['departmentName'].setValue(customer.departmentName);
       this.customerForm.controls['reductionId'].setValue(customer.reductionId);
-
-      console.log(this.customerIsUpdate);
-    },
-    error  => {
-    console.log('Error', error);
-    });
   }
 
   createCustomer(customer: Customer) {
-    if (this.customerIsUpdate == null) {
+    if (this.customerIdUpdate == null) {
       this.customerService.createCustomer(customer).subscribe(
         data => {
           this.dataSaved = true;
           this.message = 'Le client à bien été ajouté';
-          this.customerIsUpdate = null;
-          this.customerForm.reset();
+          this.closeForm();
         }
       );
     } else {
-      customer.id = this.customerIsUpdate;
+      customer.id = this.customerIdUpdate;
+
       this.customerService.updateCustomer(customer).subscribe(
         () => {
           this.dataSaved = true;
           this.message = 'Le client à bien été modifié';
-          this.customerIsUpdate = null;
-          this.customerForm.reset();
+          this.closeForm();
         },
         error  => {
           console.log('Error', error);
@@ -99,26 +99,21 @@ export class CustomerAddComponent implements OnInit {
     }
   }
 
-  deleteCustomer(customerId: number) {
-    if (confirm('Voulez-vous vraiment supprimer cette utilisateur ?')) {
-      this.customerService.deleteCustomer(customerId).subscribe(
-        () => {
-          this.dataSaved = true;
-          this.message = 'Le client à bien été supprimé';
-          this.customerIsUpdate = null;
-          this.customerForm.reset();
-        }
-      );
-    }
-  }
-
   resetForm() {
     this.customerForm.reset();
     this.customerForm.markAsUntouched();
     this.message = null;
+    this.customerIdUpdate = null;
     this.dataSaved = false;
+  }
 
-    this.dialogRef.close(this.customerForm.value);
+  closeForm() {
+    this.customerForm.reset();
+    this.customerForm.markAsUntouched();
+    this.dialogRef.close(this.message);
+    this.message = null;
+    this.customerIdUpdate = null;
+    this.dataSaved = false;
   }
 
 }
