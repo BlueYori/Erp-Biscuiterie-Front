@@ -11,6 +11,12 @@ import { ProductService } from 'src/app/service/product-service/product.service'
 })
 export class OrderAddComponent implements OnInit {
 
+  // Algo pour pas oublier
+  // Quand ajoute produit au panier, on ajoute coté front au tableau de product
+  // On ajoute également dans un tableau de orderDetails l'id de ce product et sa quantité
+  // (créer fonction pour modifier quantité du produit en fonction de son id)
+  // Quand on clique sur passer une commande, on créé un body Order et on y ajoute la collection de orderDetails
+
   public leftDisplayedColumns = [ 'name', 'price', 'actions'];
   public rightDisplayedColumns = [ 'name', 'price', 'quantity', 'actions'];
   leftDataSource = new MatTableDataSource<Product>();

@@ -1,3 +1,9 @@
+#table {
+    width: 100%;
+    flex: 1 1 auto;
+    position: relative;
+}
+
 #products, #command {
     position: absolute;
     top: 0;

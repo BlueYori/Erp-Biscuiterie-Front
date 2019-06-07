@@ -75,11 +75,12 @@ export class UserAddComponent implements OnInit {
       this.message = null;
       this.dataSaved = null;
 
-      this.userForm.controls['firstname'].setValue(user.firstname);
+      this.userForm.patchValue(user);
+      /*this.userForm.controls['firstname'].setValue(user.firstname);
       this.userForm.controls['lastname'].setValue(user.lastname);
       this.userForm.controls['email'].setValue(user.email);
       this.userForm.controls['password'].setValue(user.password);
-      this.userForm.controls['roleId'].setValue(user.roleId);
+      this.userForm.controls['roleId'].setValue(user.roleId);*/
   }
 
   createUser(user: User) {
