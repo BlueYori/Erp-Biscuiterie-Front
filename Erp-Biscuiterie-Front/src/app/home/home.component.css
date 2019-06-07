@@ -8,12 +8,17 @@ mat-sidenav {
 
 /* Structure */
 table {
-    width: 100%;
+    width: 120%;
 }
   
 .mat-form-field {
-    font-size: 14px;
+    font-size: 1px;
     width: 100%;
+   
+}
+.main-tab{
+    margin-top: 10px;
+
 }
   
 

@@ -1,9 +1,13 @@
-
-    <mat-grid-list cols = "3" rowHeight = "100px">
+  <div>
+  <h2>Liste des Produits</h2>
+  <button (click)="goToPage('product')" mat-mini-fab color="warn">+</button>
+  </div>
+  <div>
+   <mat-grid-list class="main-tab" cols = "3" rowHeight = "100px">
 
         <mat-grid-tile 
         [colspan] = "1"
-        [rowspan] = "2">
+        [rowspan] = "3">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
             <!-- Position Column -->
@@ -38,5 +42,4 @@
         [rowspan] = "1">
         </mat-grid-tile>
      </mat-grid-list>
-
-  <button (click)="goToPage('product')" mat-mini-fab color="warn">+</button>
+</div>
