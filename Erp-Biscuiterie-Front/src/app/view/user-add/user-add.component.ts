@@ -5,6 +5,8 @@ import { User } from 'src/app/service/user-service/user';
 import { UserService } from 'src/app/service/user-service/user.service';
 import { MatTableDataSource, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { UserComponent } from 'src/app/model/user/user.component';
+import { Role } from 'src/app/service/role-service/role';
+import { RoleService } from 'src/app/service/role-service/role.service';
 
 @Component({
   selector: 'app-user-add',
@@ -18,11 +20,13 @@ export class UserAddComponent implements OnInit {
   message = null;
   title: String = 'Ajouter un utilisateur';
   userToUpdate: User;
+  roles: Role[];
   userIdUpdate;
 
   constructor(
     private formbuilder: FormBuilder,
     private userService: UserService,
+    private roleService: RoleService,
     private dialogRef: MatDialogRef<UserComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
       if ( data != null && data.userToUpdate != null) {
@@ -47,7 +51,12 @@ export class UserAddComponent implements OnInit {
       this.loadUserToEdit(this.userToUpdate);
     }
 
-    console.log(this.userIdUpdate);
+    // Recupere les roles dynamiquement
+    this.roleService.getAllRole().subscribe(
+      (data) => {
+        this.roles = data;
+    });
+
   }
 
   getErrorEmail() {

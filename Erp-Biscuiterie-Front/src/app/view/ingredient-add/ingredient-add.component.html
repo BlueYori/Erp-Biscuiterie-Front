@@ -1,0 +1,61 @@
+<div class="container">
+
+  <div id="manage-ingredient" class="z-depth1">
+
+    <mat-toolbar class="title-form" color="accent">
+      <div align="center" style="text-align: center; width:100%;">
+        <p>AJOUTER UN INGREDIENT</p>
+      </div>
+    </mat-toolbar>
+
+    <br><br>
+
+    <mat-dialog-content align="left">
+      <form [formGroup]="ingredientForm" (ngSubmit)="onFormSubmit(ingredientForm.value)" class="form">
+        <mat-form-field class="form-element">
+          <input formControlName="name" matTooltip="Enter Ingredient Name" matInput placeholder="Nom de l'ingrédient">
+          <mat-error *ngIf="!ingredientForm.get('name').valid && ingredientForm.get('name').touched">
+            Ce champ est obligatoire
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <input formControlName="price" matTooltip="Enter Ingredient Price" matInput
+            placeholder="Prix de l'ingrédient">
+          <mat-error *ngIf="!ingredientForm.get('price').valid && ingredientForm.get('price').touched">
+            {{ getErrorPrice() }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-element" matTooltip="Enter Ingredient Type" matInput>
+          <mat-label>Type de l'ingrédient</mat-label>
+          <select formControlName="typeIngredientId" matNativeControl required>
+            <option value="1">mg</option>
+            <option value="2">ml</option>
+            <option value="3">pièce(s)</option>
+          </select>
+          <mat-error
+            *ngIf="!ingredientForm.get('typeIngredientId').valid && ingredientForm.get('typeIngredientId').touched">
+            Ce champ est obligatoire
+          </mat-error>
+        </mat-form-field>
+
+
+        <mat-dialog-actions align="center">
+          <button type="submit" mat-raised-button color="accent" matTooltip="Click Submit Button"
+            [disabled]="!ingredientForm.valid">Valider</button>
+          <button type="reset" mat-raised-button color="accent" matTooltip="Click Reset Button"
+            (click)="closeForm()">Fermer</button>
+        </mat-dialog-actions>
+
+        <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">
+          {{message}}
+        </p>
+
+        <br><br>
+
+      </form>
+    </mat-dialog-content>
+  </div>
+
+</div>

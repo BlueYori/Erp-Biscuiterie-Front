@@ -21,6 +21,8 @@ import { CustomerComponent } from './model/customer/customer.component';
 import { CustomerAddComponent } from './view/customer-add/customer-add.component';
 import { UserAddComponent } from './view/user-add/user-add.component';
 import { ProductAddComponent } from './view/product-add/product-add.component';
+import { IngredientAddComponent } from './view/ingredient-add/ingredient-add.component';
+import { OrderAddComponent } from './view/order-add/order-add.component';
 
 const routes: Routes = [
   {
@@ -95,6 +97,14 @@ const routes: Routes = [
   {
     path: 'product-add',
     component: ProductAddComponent,
+  },
+  {
+    path: 'ingredient-add',
+    component: IngredientAddComponent,
+  },
+  {
+    path: 'order-add',
+    component: OrderAddComponent,
   }
 ];
 
@@ -120,5 +130,7 @@ export const routingComponents = [
   LoginFormComponent,
   CustomerAddComponent,
   UserAddComponent,
-  ProductAddComponent
+  ProductAddComponent,
+  IngredientAddComponent,
+  OrderAddComponent
 ];
