@@ -1,9 +1,11 @@
 import { AppRoutingModule, routingComponents } from './app-routing.module';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { AppComponent } from './app.component';
 import { CustomMaterialModule } from './core/material.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr);
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -37,6 +39,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NumbersOnlyDirective } from './directives/numbers-only.directive';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,8 @@ import { HttpClientModule } from '@angular/common/http';
     LayoutComponent,
     HeaderComponent,
     SidenavListComponent,
-    routingComponents
+    routingComponents,
+    NumbersOnlyDirective
   ],
   imports: [
     AppRoutingModule,
@@ -102,7 +106,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatSidenavModule
   ],
   providers: [
-    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
+    { provide: LOCALE_ID, useValue: 'fr-FR'}
   ],
   bootstrap: [AppComponent]
 })
