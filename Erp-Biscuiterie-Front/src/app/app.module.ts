@@ -30,8 +30,7 @@ import {
   MatListModule,
   MatTabsModule,
   MatSortModule,
-  MatPaginatorModule,
-  MatGridListModule
+  MatPaginatorModule
 } from '@angular/material';
 
 import { LayoutComponent } from './layout/layout.component';
