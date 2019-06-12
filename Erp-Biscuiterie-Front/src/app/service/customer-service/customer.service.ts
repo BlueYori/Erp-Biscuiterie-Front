@@ -9,7 +9,7 @@ import { Customer } from './customer';
 })
 export class CustomerService {
 
-  url = 'https://localhost:44386/api/customer/';
+  url = 'https://localhost:5001/api/customer/';
 
   constructor(private http: HttpClient) { }
 
