@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin, merge } from 'rxjs';
 import { FormBuilder, Validators, FormGroup, FormGroupDirective } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material';
 import { MatDialog, MatDialogConfig } from '@angular/material';
@@ -7,6 +7,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import { User } from 'src/app/service/user-service/user';
 import { UserService } from 'src/app/service/user-service/user.service';
 import { UserAddComponent } from 'src/app/view/user-add/user-add.component';
+import { RoleService } from 'src/app/service/role-service/role.service';
+import { Role } from 'src/app/service/role-service/role';
 
 @Component({
   selector: 'app-user',
@@ -23,7 +25,10 @@ export class UserComponent implements OnInit {
   public displayedColumns = ['id', 'firstname', 'email', 'roleId', 'actions'];
   dataSource = new MatTableDataSource<User>();
 
-  constructor(private formbuilder: FormBuilder, private userService: UserService, private dialog: MatDialog) { }
+  constructor(private formbuilder: FormBuilder,
+    private userService: UserService,
+    private dialog: MatDialog,
+    private roleService: RoleService) { }
 
   ngOnInit() {
     this.loadAllUsers();
@@ -58,11 +63,27 @@ export class UserComponent implements OnInit {
   loadAllUsers() {
     // Double appel dégueu, a revoir
     // this.allUsers = this.userService.getAllUser();
-    this.userService.getAllUser().subscribe(
-      users => {
-        this.dataSource.data = users as User[];
-      }
-    );
+
+
+    forkJoin( this.userService.getAllUser(), this.roleService.getAllRole() ).subscribe(
+      result => {
+
+      const users: User[] = result[0];
+      const roles: Role[] = result[1];
+      this.dataSource.data = users.map(user => {
+        // ton blabla
+        const roleFind = roles.find(role => role.id === user.roleId);
+        return {
+          id: user.id,
+          firstname: user.firstname,
+          lastname: user.lastname,
+          email: user.email,
+          password: user.password,
+          roleId: user.roleId,
+          roleNamee: roleFind.name
+        };
+      });
+    });
   }
 
   loadUserToEdit(user: User) {
