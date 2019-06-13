@@ -6,6 +6,8 @@ import { FormBuilder, Validators, FormGroup, FormGroupDirective } from '@angular
 import { Product } from 'src/app/service/product-service/product';
 import { ProductService } from 'src/app/service/product-service/product.service';
 import { Router } from '@angular/router';
+import { Order } from '../service/order-service/order';
+import { OrderService } from '../service/order-service/order.service';
 
 
 @Component({
@@ -15,34 +17,38 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  dataSaved = false;
-  productForm: FormGroup;
-  allProducts: Observable<Product[]>;
-  productIdUpdate;
-  message = null;
+  dataSavedOrder = false;
+  messageOrder = null;
+
+  // Table
+  public displayedColumnsOrder = ['idClient', 'nameClient', 'stateId'];
+  dataSourceOrder = new MatTableDataSource<Order>();
+
 
   // Table
   public displayedColumns = [ 'id', 'name', 'price'];
   dataSource = new MatTableDataSource<Product>();
 
-  constructor(private formbuilder: FormBuilder, private productService: ProductService, private router: Router) { }
+  constructor(private formbuilder: FormBuilder, private productService: ProductService,
+    private orderService: OrderService, private router: Router) { }
 
   ngOnInit() {
-     this.productForm = this.formbuilder.group({
-      id: ['', [Validators.required]],
-      name: ['', [Validators.required]],
-      price: ['', [Validators.required]],
-
-    });
     this.loadAllProducts();
+    this.loadAllOrders();
   }
 
   loadAllProducts() {
-    this.allProducts = this.productService.getAllProduct();
     this.productService.getAllProduct().subscribe(
       products => {
         this.dataSource.data = products as Product[];
-        console.log(products);
+      }
+    );
+  }
+
+  loadAllOrders() {
+    this.orderService.getAllOrders().subscribe(
+      orders => {
+        this.dataSourceOrder.data = orders as Order[];
       }
     );
   }

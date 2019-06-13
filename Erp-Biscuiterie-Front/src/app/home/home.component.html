@@ -6,7 +6,7 @@
 <div>
   <mat-grid-list class="main-tab" cols="3" rowHeight="50px">
 
-    <mat-grid-tile [colspan]="1" [rowspan]="3">
+    <mat-grid-tile [colspan]="1" [rowspan]="6">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
         <!-- Position Column -->
@@ -45,29 +45,28 @@
     <h2 style="font-family: 'Shadows Into Light', cursive; font-size: 50px;">Liste Commandes</h2>
   </div>
 
-  <mat-grid-list class="main-tab" cols="3" rowHeight="50px">
+  <mat-grid-list class="main-tab" cols="2" rowHeight="50px">
 
     <mat-grid-tile [colspan]="1" [rowspan]="3">
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSourceOrder" class="mat-elevation-z8">
 
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef> Id </th>
-          <td mat-cell *matCellDef="let product"> {{customer.id}} </td>
+        <ng-container matColumnDef="idClient">
+          <th mat-header-cell *matHeaderCellDef> Commande </th>
+          <td mat-cell *matCellDef="let customer">
+            <!--- {{customer.id}} -->
+          </td>
         </ng-container>
 
-        <ng-container matColumnDef="name">
+        <ng-container matColumnDef="nameClient">
           <th mat-header-cell *matHeaderCellDef> Nom du Client </th>
-          <td mat-cell *matCellDef="let product"> {{customer.name}} </td>
+          <td mat-cell *matCellDef="let customer">
+            <!--{{customer.name}}-->
+          </td>
         </ng-container>
 
-        <ng-container matColumnDef="price">
-          <th mat-header-cell *matHeaderCellDef> Prix </th>
-          <td mat-cell *matCellDef="let product"> {{order.price}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="price">
+        <ng-container matColumnDef="stateId">
           <th mat-header-cell *matHeaderCellDef> État </th>
-          <td mat-cell *matCellDef="let product"> {{order.stateId}} </td>
+          <td mat-cell *matCellDef="let order"> {{order.stateId}} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -79,4 +78,4 @@
     <mat-grid-tile [colspan]="2" [rowspan]="1">
     </mat-grid-tile>
   </mat-grid-list>
-</div>
+</div
