@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   messageOrder = null;
 
   // Table
-  public displayedColumnsOrder = ['idClient', 'nameClient', 'stateId'];
+  public displayedColumnsOrder = ['date', 'customerName', 'stateId'];
   dataSourceOrder = new MatTableDataSource<Order>();
 
 
