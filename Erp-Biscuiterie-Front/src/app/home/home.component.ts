@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
   }
 
  goToPage(pageName: string) {
-   this.router.navigate(['/product'])
+   this.router.navigate(['/product']);
  }
 
 }

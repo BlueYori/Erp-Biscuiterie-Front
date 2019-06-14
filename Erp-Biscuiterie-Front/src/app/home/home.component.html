@@ -3,10 +3,9 @@
   <button (click)="goToPage('product')" mat-mini-fab color="warn">+</button>
   </div>
   <div>
-   <mat-grid-list class="main-tab" cols = "1" rowHeight = "100px">
+   <mat-grid-list class="main-tab" cols = "1" rowHeight = "400px">
         <mat-grid-tile 
-        [colspan] = "1"
-        [rowspan] = "3">
+        >
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
             <!-- Position Column -->
@@ -28,22 +27,21 @@
             </ng-container>
   
     
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
         </mat-grid-tile>
      </mat-grid-list>
 </div>
 
-<!-- <div>
+ <div>
   <h2>Liste des Commandes</h2>
   <button (click)="goToPage('product')" mat-mini-fab color="warn">+</button>
   </div>
   <div>
-   <mat-grid-list class="main-tab" cols = "1" rowHeight = "100px">
+   <mat-grid-list class="main-tab" cols = "1" rowHeight = "2:1">
         <mat-grid-tile 
-        [colspan] = "1"
-        [rowspan] = "3">
+        >
         <table mat-table [dataSource]="dataSourceOrder" class="mat-elevation-z8">
 
             <ng-container matColumnDef="date">
@@ -62,9 +60,9 @@
             </ng-container>
   
     
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsOrder;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsOrder;"></tr>
           </table>
         </mat-grid-tile>
      </mat-grid-list>
-</div> -->
+</div> 
