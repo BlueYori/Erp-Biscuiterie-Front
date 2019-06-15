@@ -3,6 +3,7 @@ import { CommonModule, registerLocaleData } from '@angular/common';
 import { AppComponent } from './app.component';
 import { CustomMaterialModule } from './core/material.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from "@angular/common/http";
 import { NgModule, LOCALE_ID } from '@angular/core';
 import localeFr from '@angular/common/locales/fr';
 registerLocaleData(localeFr);
@@ -11,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LayoutModule } from '@angular/cdk/layout';
+import { ConnexionService } from './service/connexion/connexion.service';
 import {
   MatButtonModule,
   MatCheckboxModule,
@@ -38,7 +40,6 @@ import {
 import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
-import { HttpClientModule } from '@angular/common/http';
 import { NumbersOnlyDirective } from './directives/numbers-only.directive';
 
 @NgModule({
@@ -106,8 +107,11 @@ import { NumbersOnlyDirective } from './directives/numbers-only.directive';
     MatSidenavModule
   ],
   providers: [
+    { provide: LOCALE_ID, useValue: 'fr-FR'},
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
-    { provide: LOCALE_ID, useValue: 'fr-FR'}
+    { provide: LOCALE_ID, useValue: 'fr-FR'},
+    ConnexionService,
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
   ],
   bootstrap: [AppComponent]
 })

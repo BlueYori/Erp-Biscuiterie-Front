@@ -68,6 +68,8 @@ export class UserAddComponent implements OnInit {
   onFormSubmit() {
     this.dataSaved = false;
     const user = this.userForm.value;
+    // console.log(user.password = this.userForm.get('password'));
+    // user.password = this.userForm.get('password');
     this.createUser(user);
   }
 
