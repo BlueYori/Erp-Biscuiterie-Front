@@ -22,6 +22,12 @@ export class ProductComponent implements OnInit {
   dataSource = new MatTableDataSource<Product>();
 
   constructor(private formbuilder: FormBuilder, private productService: ProductService, private dialog: MatDialog) { }
+  
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
 
   ngOnInit() {
     this.loadAllProducts();

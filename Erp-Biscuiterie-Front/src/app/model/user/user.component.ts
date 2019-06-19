@@ -30,6 +30,12 @@ export class UserComponent implements OnInit {
     private dialog: MatDialog,
     private roleService: RoleService) { }
 
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
+
   ngOnInit() {
     this.loadAllUsers();
   }
@@ -65,32 +71,32 @@ export class UserComponent implements OnInit {
     // this.allUsers = this.userService.getAllUser();
 
 
-    forkJoin( this.userService.getAllUser(), this.roleService.getAllRole() ).subscribe(
+    forkJoin(this.userService.getAllUser(), this.roleService.getAllRole()).subscribe(
       result => {
 
-      const users: User[] = result[0];
-      const roles: Role[] = result[1];
-      this.dataSource.data = users.map(user => {
-        // ton blabla
-        const roleFind = roles.find(role => role.id === user.roleId);
-        return {
-          id: user.id,
-          firstname: user.firstname,
-          lastname: user.lastname,
-          email: user.email,
-          password: user.password,
-          roleId: user.roleId,
-          roleNamee: roleFind.name
-        };
+        const users: User[] = result[0];
+        const roles: Role[] = result[1];
+        this.dataSource.data = users.map(user => {
+          // ton blabla
+          const roleFind = roles.find(role => role.id === user.roleId);
+          return {
+            id: user.id,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            email: user.email,
+            password: user.password,
+            roleId: user.roleId,
+            roleNamee: roleFind.name
+          };
+        });
       });
-    });
   }
 
   loadUserToEdit(user: User) {
-      this.message = null;
-      this.dataSaved = null;
+    this.message = null;
+    this.dataSaved = null;
 
-      this.openDialog(user);
+    this.openDialog(user);
   }
 
   deleteUser(userId: number) {
