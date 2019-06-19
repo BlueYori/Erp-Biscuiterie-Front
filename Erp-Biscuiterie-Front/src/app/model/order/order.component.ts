@@ -44,7 +44,7 @@ export class OrderComponent implements OnInit {
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
-  
+
   ngOnInit() {
     this.loadAllOrders();
   }
