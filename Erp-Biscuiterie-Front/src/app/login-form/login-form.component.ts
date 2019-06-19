@@ -35,6 +35,8 @@ export class LoginFormComponent implements OnInit {
           this.user = user;
           this.eventClick.emit(!this.isLoginError);
           localStorage.setItem('logged', 'true'); // Variable de session persistente
+        } else {
+          this.isLoginError = true;
         }
       },
         (err: HttpErrorResponse) => {

@@ -15,21 +15,27 @@
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
       <!-- Id Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let order"> {{order.id}} </td>
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Nom </th>
+        <td mat-cell *matCellDef="let order"> Commande du {{order.date |  date:'dd/MM/yyyy'}} </td>
       </ng-container>
 
       <!-- Nom Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Nom </th>
-        <td mat-cell *matCellDef="let order"> {{order.name}} </td>
+      <ng-container matColumnDef="customer">
+        <th mat-header-cell *matHeaderCellDef> Client </th>
+        <td mat-cell *matCellDef="let order"> {{order.customer}} </td>
       </ng-container>
 
       <!-- Prix Column -->
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef> Prix </th>
-        <td mat-cell *matCellDef="let order"> {{order.price}} </td>
+        <td mat-cell *matCellDef="let order"> {{order.price}}€ </td>
+      </ng-container>
+
+      <!-- Prix Column -->
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef> Etat </th>
+        <td mat-cell *matCellDef="let order"> {{order.state}} </td>
       </ng-container>
 
       <!-- Action Column -->
