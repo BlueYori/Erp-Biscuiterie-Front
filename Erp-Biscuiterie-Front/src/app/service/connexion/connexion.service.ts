@@ -30,9 +30,6 @@ export class ConnexionService {
       password: Password,
     };
 
-    console.log(Username);
-    console.log(Password);
-
     return this.http.post<Connexion>(this.ConnectionAPI, JSON.stringify(Connexion), this.httpOptions)
       .pipe(
         retry(1),

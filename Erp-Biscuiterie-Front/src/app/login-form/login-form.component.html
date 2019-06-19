@@ -7,10 +7,10 @@
           <input [(ngModel)]="username" matInput placeholder="Adresse Mail">
         </mat-form-field>
         <mat-form-field>
-          <input type="password" [(ngModel)]="password" matInput placeholder="Mot de Passe">
+          <input type="password" [(ngModel)]="password" matInput placeholder="Mot de Passe" (keydown)="sendEvent()">
         </mat-form-field>
       </mat-card-content>
-      <mat-card-actions align="end">
+      <mat-card-actions class="button" align="end">
         <button mat-raised-button color="primary" (click)="sendEvent()">Login</button>
       </mat-card-actions>
       <div *ngIf="isLoginError" class="alert-danger alert">
