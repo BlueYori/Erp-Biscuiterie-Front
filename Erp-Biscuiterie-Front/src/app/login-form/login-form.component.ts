@@ -27,13 +27,14 @@ export class LoginFormComponent implements OnInit {
   }
 
   sendEvent() {
-    //this.eventClick.emit(this.isLogged);
+    // this.eventClick.emit(this.isLogged);
     this.connexionService.login(this.username, this.password)
       .subscribe((user: Object) => {
         if (user != null) {
           this.isLoginError = false;
           this.user = user;
           this.eventClick.emit(!this.isLoginError);
+          localStorage.setItem('logged', 'true'); // Variable de session persistente
         }
       },
         (err: HttpErrorResponse) => {
@@ -43,9 +44,9 @@ export class LoginFormComponent implements OnInit {
   /*.subscribe(
     data =>
       {
-        //this.connexion = data; 
+        //this.connexion = data;
         alert(data);
-        //this.connexionService. = this.connexion.Email;  
+        //this.connexionService. = this.connexion.Email;
         //navigare da qualche parte
       }
   );*/

@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ConnexionService } from 'src/app/service/connexion/connexion.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,13 +11,19 @@ export class HeaderComponent implements OnInit {
 
   @Output() public sidenavToggle = new EventEmitter();
 
-  constructor() { }
+  constructor(
+    private connexionService: ConnexionService) { }
 
   ngOnInit() {
   }
 
   public onToggleSidenav = () => {
     this.sidenavToggle.emit();
+  }
+
+  logout() {
+    this.connexionService.logout();
+    window.location.href = '/';
   }
 
 }

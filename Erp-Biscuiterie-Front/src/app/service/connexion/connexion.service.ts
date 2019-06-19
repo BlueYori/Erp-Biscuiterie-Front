@@ -16,7 +16,7 @@ export class ConnexionService {
   constructor(private http: HttpClient) { }
 
 
-  private ConnectionAPI = "https://localhost:5001/api/user/sign-in";
+  private ConnectionAPI = 'https://localhost:5001/api/user/sign-in';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -39,8 +39,13 @@ export class ConnexionService {
         catchError(this.handleError));
   }
 
+  logout() {
+    // On clear toutes les variables de session LocalStorage, ce qui nous deconnectera lors d'un refresh
+    localStorage.clear();
+  }
+
   /*login(){
-    //return this.http.post(this.ConnectionAPI+'/Employee',""); 
+    //return this.http.post(this.ConnectionAPI+'/Employee',"");
     return this.http.get(this.ConnectionAPI);
     //.toPromise().then(res => this.list = res as Employee[]);
    }*/
