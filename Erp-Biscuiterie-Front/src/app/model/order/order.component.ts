@@ -147,11 +147,11 @@ export class OrderComponent implements OnInit {
   }
 
   deleteOrder(orderId: number) {
-    if (confirm('Voulez-vous vraiment supprimer cette utilisateur ?')) {
+    if (confirm('Voulez-vous vraiment supprimer cette commande ?')) {
       this.orderService.deleteOrder(orderId).subscribe(
         () => {
           this.dataSaved = true;
-          this.message = 'L\'utilisateur à bien été supprimé';
+          this.message = 'La commande à bien été supprimée';
           this.loadAllOrders();
         }
       );
